@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_21_170222) do
+ActiveRecord::Schema.define(version: 2018_10_23_223311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,11 +32,13 @@ ActiveRecord::Schema.define(version: 2018_10_21_170222) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
-    t.integer "UIN", null: false
     t.integer "phone_no"
     t.string "year"
     t.string "first_name"
     t.string "last_name"
+    t.string "provider"
+    t.string "uid"
+    t.string "UIN"
   end
 
   add_foreign_key "schedules", "subjects", column: "subjects_id"

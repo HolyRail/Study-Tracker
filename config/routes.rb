@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    root 'dashboard#index'
+    
+    get 'dashboard/index'
+    get '/signin',   to: 'sessions#new'
+    post '/signin',   to: 'sessions#create'
+    get 'login', to: redirect('/auth/google_oauth2'), as: 'login'
+    get '/logout', to: 'sessions#destroy', as: 'logout'
+    get 'auth/:provider/callback', to: 'sessions#create'
+    get 'auth/failure', to: redirect('/')
 end
