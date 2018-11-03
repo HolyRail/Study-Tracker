@@ -1,2 +1,80 @@
-%h1 Dashboard#index
-%p Find me in app/views/dashboard/index.html.haml
+!!!
+%html
+  %body
+    %h2 Create Account
+    Name:
+    %br/
+    %input{:name => "Name", :type => "text", :value => "Mickey"}/
+    %br/
+    Classification:
+    %br/
+    %select
+      %option{:value => "freshman"} Freshman
+      %option{:value => "sophomore"} Sophomore
+      %option{:value => "junior"} Junior
+      %option{:value => "senior"} Senior
+    %br/
+    Phone No:
+    %br/
+    %input{:name => "phone_no", :type => "text", :value => "(012) 345 6789"}/
+    %br/
+    %br/
+    Enter Study Plan:
+    %br/
+    Subject:
+    %br/
+    %input{:name => "subject", :type => "text", :value => "Cooking 101"}/
+    %br/
+    Hours planned:
+    %br/
+    %input{:name => "hours_planned", :type => "text", :value => "20"}/
+    %br/
+    Start Date:
+    %br/
+    %input{:name => "start_date", :type => "date"}/
+    %br/
+    End Date:
+    %br/
+    %input{:name => "end_date", :type => "date"}/
+    %br/
+    %br/
+    %button{:onclick => "addSchedule()"} Add Schedule
+    #add
+      Day:
+      %br/
+      %select
+        %option{:value => "mon"} Monday
+        %option{:value => "tue"} Tuesday
+        %option{:value => "wed"} Wednesday
+        %option{:value => "thu"} Thursday
+        %option{:value => "fri"} Friday
+        %option{:value => "sat"} Saturday
+        %option{:value => "sun"} Sunday
+      %br/
+      From:
+      %br/
+      %input{:name => "start_time", :type => "time"}/
+      %br/
+      To:
+      %br/
+      %input{:name => "end_time", :type => "time"}/
+      %br/
+    %br/
+    %br/
+    %input{:type => "submit", :value => "Create"}/
+    :javascript
+      function addSchedule() {
+          var x = document.getElementById("add");
+          var cln = x.cloneNode(true);
+          
+          var btn = document.createElement("button");
+          btn.name = "Delete";
+          btn.id = "id"
+          btn.onclick = function () {
+          var y = document.getElementById(this.id)
+          alert(this.id)
+          y.parentNode.removeChild()
+      	}
+          cln.appendChild(btn);
+          document.getElementById("add").appendChild(cln);
+      }
