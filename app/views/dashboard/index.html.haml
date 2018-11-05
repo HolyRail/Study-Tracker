@@ -1,18 +1,21 @@
 !!!
 %html
+  %head
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"}
   %body
     %h2 Create Account
     Name:
     %br/
-    %input{:name => "Name", :type => "text", :value => "Mickey"}/
+    %input{:name => "Name", :required => "", :type => "text", :value => "Mickey"}/
     %br/
     Classification:
     %br/
-    %select
+    %select{:required => ""}
       %option{:value => "freshman"} Freshman
       %option{:value => "sophomore"} Sophomore
       %option{:value => "junior"} Junior
       %option{:value => "senior"} Senior
+      %option{:value => "graduate"} Graduate
     %br/
     Phone No:
     %br/
@@ -23,58 +26,62 @@
     %br/
     Subject:
     %br/
-    %input{:name => "subject", :type => "text", :value => "Cooking 101"}/
+    %input{:name => "subject", :required => "", :type => "text", :value => "Cooking 101"}/
     %br/
     Hours planned:
     %br/
-    %input{:name => "hours_planned", :type => "text", :value => "20"}/
+    %input{:name => "hours_planned", :required => "", :type => "text", :value => "20"}/
     %br/
     Start Date:
     %br/
-    %input{:name => "start_date", :type => "date"}/
+    %input{:name => "start_date", :required => "", :type => "date"}/
     %br/
     End Date:
     %br/
-    %input{:name => "end_date", :type => "date"}/
+    %input{:name => "end_date", :required => "", :type => "date"}/
     %br/
     %br/
-    %button{:onclick => "addSchedule()"} Add Schedule
-    #add
-      Day:
-      %br/
-      %select
-        %option{:value => "mon"} Monday
-        %option{:value => "tue"} Tuesday
-        %option{:value => "wed"} Wednesday
-        %option{:value => "thu"} Thursday
-        %option{:value => "fri"} Friday
-        %option{:value => "sat"} Saturday
-        %option{:value => "sun"} Sunday
-      %br/
-      From:
-      %br/
-      %input{:name => "start_time", :type => "time"}/
-      %br/
-      To:
-      %br/
-      %input{:name => "end_time", :type => "time"}/
-      %br/
+    .add
+      .div1
+        %button.btn-copy Add Schedule
+        %br/
+        Day:
+        %br/
+        %select{:required => ""}
+          %option{:value => "mon"} Monday
+          %option{:value => "tue"} Tuesday
+          %option{:value => "wed"} Wednesday
+          %option{:value => "thu"} Thursday
+          %option{:value => "fri"} Friday
+          %option{:value => "sat"} Saturday
+          %option{:value => "sun"} Sunday
+        %br/
+        From:
+        %br/
+        %input{:name => "start_time", :required => "", :type => "time"}/
+        %br/
+        To:
+        %br/
+        %input{:name => "end_time", :required => "", :type => "time"}/
+        %br/
+        %button.btn-delete Delete
     %br/
     %br/
     %input{:type => "submit", :value => "Create"}/
     :javascript
-      function addSchedule() {
-          var x = document.getElementById("add");
-          var cln = x.cloneNode(true);
-          
-          var btn = document.createElement("button");
-          btn.name = "Delete";
-          btn.id = "id"
-          btn.onclick = function () {
-          var y = document.getElementById(this.id)
-          alert(this.id)
-          y.parentNode.removeChild()
-      	}
-          cln.appendChild(btn);
-          document.getElementById("add").appendChild(cln);
-      }
+      $(function(){
+      		$(".btn-copy").on('click', function(){
+        		var ele = $(this).closest('.div1').clone(true);
+       			//var ele = $(this).getElementById('div1').clone(true);
+                $(this).closest('.div1').after(ele);
+      		})
+      }) 
+           
+      $(function(){
+      		$(".btn-delete").on('click', function(){
+            	//alert($(this).closest('.div1').closest('.add').children().length)
+            	if ($(this).closest('.div1').closest('.add').children().length > 1) {
+                	$(this).closest('.div1').remove();
+                }    
+      		})
+      })
