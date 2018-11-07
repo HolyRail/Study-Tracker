@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'setup/index'
     root 'dashboard#index'
     
     get 'dashboard/index'

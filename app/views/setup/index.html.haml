@@ -1,0 +1,66 @@
+.container
+  %form{:action => "Create"}
+    .setup-header
+      %h2 Create Account
+    %p 
+      Name:
+      %span=  @current_user.first_name + " " + @current_user.last_name
+    %br/
+    %select.select-year
+      %option{:value => "Freshman"} Freshman
+      %option{:value => "Sophomore"} Sophomore
+      %option{:value => "Junior"} Junior
+      %option{:value => "Senior"} Senior
+      %option{:value => "Graduate"} Graduate
+    %br/
+    Phone No:
+    %br/
+    %input{:name => "phone_no", :type => "text"}/
+    %br/
+    %br/
+    Enter Study Plan:
+    %br/
+    Subject:
+    %br/
+    %input{:name => "subject", :required => "", :type => "text"}/
+    %br/
+    Hours planned:
+    %br/
+    %input{:name => "hours_planned", :required => "", :type => "text"}/
+    %br/
+    Start Date:
+    %br/
+    %input{:name => "start_date", :required => "", :type => "date"}/
+    %br/
+    End Date:
+    %br/
+    %input{:name => "end_date", :required => "", :type => "date"}/
+    %br/
+    %br/
+    .add
+      .div1
+        %button.btn-copy Add Schedule
+        %br/
+        Day:
+        %br/
+        %select{:required => ""}
+          %option{:value => "mon"} Monday
+          %option{:value => "tue"} Tuesday
+          %option{:value => "wed"} Wednesday
+          %option{:value => "thu"} Thursday
+          %option{:value => "fri"} Friday
+          %option{:value => "sat"} Saturday
+          %option{:value => "sun"} Sunday
+        %br/
+        From:
+        %br/
+        %input{:name => "start_time", :required => "", :type => "time"}/
+        %br/
+        To:
+        %br/
+        %input{:name => "end_time", :required => "", :type => "time"}/
+        %br/
+        %button.btn-delete Delete
+    %br/
+    %br/
+    %input{:type => "submit"}/
