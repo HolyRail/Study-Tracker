@@ -36,30 +36,30 @@
         .form-group.col-6
           %label{:for => "enddate"} Enter End Date
           %input#enddate{:type => "date", :required => ""}/
-      %button.btn-copy.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-6 Add Schedule
       .add
         .div1.form-row
-          %br/
-          %label{:for => "day"} Select Day
-          %select#day.select-year.form-control.form-control-lg{:required => ""}
-            %option{:value => "mon"} Monday
-            %option{:value => "tue"} Tuesday
-            %option{:value => "wed"} Wednesday
-            %option{:value => "thu"} Thursday
-            %option{:value => "fri"} Friday
-            %option{:value => "sat"} Saturday
-            %option{:value => "sun"} Sunday
-          %br/
-          From:
-          %br/
-          %input{:name => "start_time", :required => "", :type => "time"}/
-          %br/
-          To:
-          %br/
-          %input{:name => "end_time", :required => "", :type => "time"}/
-          %br/
-          %button.btn-delete Delete
-      %br/
-      %br/
+          .form-group.col-4
+            %label{:for => "day"} Select Day
+            %select#day.select-year.form-control.form-control-lg{:required => ""}
+              %option{:value => "mon"} Monday
+              %option{:value => "tue"} Tuesday
+              %option{:value => "wed"} Wednesday
+              %option{:value => "thu"} Thursday
+              %option{:value => "fri"} Friday
+              %option{:value => "sat"} Saturday
+              %option{:value => "sun"} Sunday
+          .form-group.col-4   
+            %label{:for => "starttime"} From
+            %input#starttime{:name => "start_time", :required => "", :type => "time"}/
+          .form-group.col-4   
+            %label{:for => "endtime"} From
+            %input#endtime{:name => "end_time", :required => "", :type => "time"}/
+        .form-row    
+          %button.btn-delete.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.mdl-button--colored Delete Schedule
+          %button.btn-copy.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.offset-2.mdl-button--colored Add Schedule
+          
+      .form-row.add-subject
+        %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-10.mdl-button--colored Add Subject
   
-      %input{:type => "submit"}/
+  %button.btn-submit.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--accent{:type => "submit", :value => ""}
+    %i.material-icons arrow_forward

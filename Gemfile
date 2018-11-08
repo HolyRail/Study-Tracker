@@ -40,9 +40,6 @@ gem 'haml-rails'
 gem 'omniauth-google-oauth2'
 gem 'sprockets', '~> 3.7.2'
 gem 'jquery-rails'
-gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
-gem 'bootstrap', '~> 4.1.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
