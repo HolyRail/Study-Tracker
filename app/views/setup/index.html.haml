@@ -1,70 +1,65 @@
+%header.mdl-layout__header
+  %h4.setup-header Create Account
 .container
   %form{:action => "Create"}
-    .setup-header
-      %h2 Create Account
-    %p 
-      Name:
-      %span=  @current_user.first_name + " " + @current_user.last_name
-    %br/
-    %select.select-year
-      %option{:value => "Freshman"} Freshman
-      %option{:value => "Sophomore"} Sophomore
-      %option{:value => "Junior"} Junior
-      %option{:value => "Senior"} Senior
-      %option{:value => "Graduate"} Graduate
-    %br/
-    Phone No:
-    %br/
-    %input{:name => "phone_no", :type => "text"}/
-
-    %br/
-    %br/
-    Enter Study Plan:
-    %br/
-    Subject:
-    %br/
-
-    %input{:name => "subject", :required => "", :type => "text"}/
-    %br/
-    Hours planned:
-    %br/
-    %input{:name => "hours_planned", :required => "", :type => "text"}/
-
-    %br/
-    Start Date:
-    %br/
-    %input{:name => "start_date", :required => "", :type => "date"}/
-    %br/
-    End Date:
-    %br/
-    %input{:name => "end_date", :required => "", :type => "date"}/
-    %br/
-    %br/
-    .add
-      .div1
-        %button.btn-copy Add Schedule
-        %br/
-        Day:
-        %br/
-        %select{:required => ""}
-          %option{:value => "mon"} Monday
-          %option{:value => "tue"} Tuesday
-          %option{:value => "wed"} Wednesday
-          %option{:value => "thu"} Thursday
-          %option{:value => "fri"} Friday
-          %option{:value => "sat"} Saturday
-          %option{:value => "sun"} Sunday
-        %br/
-        From:
-        %br/
-        %input{:name => "start_time", :required => "", :type => "time"}/
-        %br/
-        To:
-        %br/
-        %input{:name => "end_time", :required => "", :type => "time"}/
-        %br/
-        %button.btn-delete Delete
-    %br/
-    %br/
-
-    %input{:type => "submit"}/
+    .container
+      %h5.username
+        Name:
+        %span=  @current_user.first_name + " " + @current_user.last_name
+      .form-row
+        .form-group.col-6
+          %label{:for => "year"} Select Year of Study
+          %select#year.select-year.form-control.form-control-lg
+            %option{:value => "Freshman"} Freshman
+            %option{:value => "Sophomore"} Sophomore
+            %option{:value => "Junior"} Junior
+            %option{:value => "Senior"} Senior
+            %option{:value => "Graduate"} Graduate
+        .form-group.col-6
+          %label{:for => "phone"} Enter Phone Number
+          %input#phone.form-control.mdl-textfield__input{:pattern => "-?[0-9]*(\\.[0-9]+)?", :type => "text"}/
+          %span.mdl-textfield__error Input is not a number!
+        
+      %h5 Enter Study Plan:
+ 
+      .form-row
+        .form-group.col-6
+          %label{:for => "subject"} Enter Subject Name
+          %input#subject.form-control.mdl-textfield__input{:type => "text"}/
+        .form-group.col-6
+          %label{:for => "hours"} Enter Hours Planned
+          %input#hours.form-control.mdl-textfield__input{:type => "number"}/
+      .form-row
+        .form-group.col-6
+          %label{:for => "startdate"} Enter Start Date
+          %input#startdate{:type => "date", :required => ""}/
+        .form-group.col-6
+          %label{:for => "enddate"} Enter End Date
+          %input#enddate{:type => "date", :required => ""}/
+      %button.btn-copy.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-6 Add Schedule
+      .add
+        .div1.form-row
+          %br/
+          %label{:for => "day"} Select Day
+          %select#day.select-year.form-control.form-control-lg{:required => ""}
+            %option{:value => "mon"} Monday
+            %option{:value => "tue"} Tuesday
+            %option{:value => "wed"} Wednesday
+            %option{:value => "thu"} Thursday
+            %option{:value => "fri"} Friday
+            %option{:value => "sat"} Saturday
+            %option{:value => "sun"} Sunday
+          %br/
+          From:
+          %br/
+          %input{:name => "start_time", :required => "", :type => "time"}/
+          %br/
+          To:
+          %br/
+          %input{:name => "end_time", :required => "", :type => "time"}/
+          %br/
+          %button.btn-delete Delete
+      %br/
+      %br/
+  
+      %input{:type => "submit"}/

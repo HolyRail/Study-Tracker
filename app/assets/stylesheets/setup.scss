@@ -81,9 +81,19 @@
 	color: #fff;
 }
 .setup-header{
-	text-align:center;
+	padding-left:10px;
 }
 
 .select-year{
 	display:inherit;
+}
+form {
+            padding: 20px;
+}
+.mdl-layout__header{
+	display:flex;
+}
+
+.username{
+	padding-bottom:10px;
 }
