@@ -6,6 +6,19 @@ class SetupController < ApplicationController
     @current_user ||= Users.find_by_id(session[:user_id])
   end
   
+  def day_to_int(day_of_week)
+    case day_of_week
+      when "mon" then day = 1
+      when "tue" then day = 2
+      when "wed" then day = 3
+      when "thu" then day = 4
+      when "fri" then day = 5
+      when "sat" then day = 6
+      when "sun" then day = 7
+    end
+    return day
+  end  
+  
   def create
     print("HELLO")
     print(params)
