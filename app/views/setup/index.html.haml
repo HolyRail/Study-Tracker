@@ -1,7 +1,7 @@
 %header.mdl-layout__header
   %h4.setup-header Create Account
 .container
-  %form{:action => setup_create_path, :method => :post}
+  %form{:action => setup_create_path, :method => :post, :novalidate => ""}
     .container
       %h5.username
         Name:
@@ -31,5 +31,5 @@
       .form-row.add-subject
         %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-10.mdl-button--colored{:type => "button"} Add Subject
   
-  %button.btn-submit.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--accent{:type => "submit", :value => ""}
-    %i.material-icons arrow_forward
+      
+      = button_to "Add", setup_create_path, :class => "btn-submit mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--accent", :method => :post, :type => "button"

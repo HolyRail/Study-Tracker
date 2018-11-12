@@ -1,6 +1,6 @@
 class SetupController < ApplicationController
-  #skip_before_action :verify_authenticity_token
-   
+  skip_before_action :verify_authenticity_token
+ 
   
   def index
     @current_user ||= Users.find_by_id(session[:user_id])
