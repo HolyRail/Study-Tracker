@@ -28,6 +28,7 @@ copysubject = ->
   return
 
 validateStartDate = ->
+  alert("Wah modiji Wah!")
   dateString = document.getElementById('startdate').value
   startDate = new Date(dateString)
   today = new Date
@@ -37,6 +38,7 @@ validateStartDate = ->
   true
 
 validateEndDate = ->
+  alert("Wah modiji Wah!!")
   dateString = document.getElementById('enddate').value
   endDate = new Date(dateString)
   dateString = document.getElementById('startdate').value
@@ -56,7 +58,7 @@ $(document).ready ->
  $ ->
    $('.btn-subject').on 'click', copysubject
  $ ->
-   $('.btn-submit').on 'click', validateEndDate, validateStartDate
+   $('.btn-submit').on 'click', validateStartDate, validateEndDate
    return
  return
 return
