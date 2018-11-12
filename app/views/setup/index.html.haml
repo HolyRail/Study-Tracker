@@ -6,60 +6,30 @@
       %h5.username
         Name:
         %span=  @current_user.first_name + " " + @current_user.last_name
-        .form-row
-          .form-group.col-6
-            %label{:for => "year"} Select Year of Study
-            %select#year.select-year.form-control.form-control-lg
-              %option{:value => "Freshman"} Freshman
-              %option{:value => "Sophomore"} Sophomore
-              %option{:value => "Junior"} Junior
-              %option{:value => "Senior"} Senior
-              %option{:value => "Graduate"} Graduate
-          .form-group.col-6
-            %label{:for => "phone"} Enter Phone Number
-            %input#phone.form-control.mdl-textfield__input{:pattern => "-?[0-9]*(\\.[0-9]+)?", :type => "text", :name => "phone_no"}/
-            %span.mdl-textfield__error Input is not a number!
-            
-          %h5 Enter Study Plan:
-      
-          .form-row
-            .form-group.col-6
-              %label{:for => "subject"} Enter Subject Name
-              %input#subject.form-control.mdl-textfield__input{:required => "", :name => "name",:type => "text"}/
-            .form-group.col-6
-              %label{:for => "hours"} Enter Hours Planned
-              %input#hours.form-control.mdl-textfield__input{:name => "hours",:type => "number"}/
-          .form-row
-            .form-group.col-6
-              %label{:for => "startdate"} Enter Start Date
-              %input#startdate{:name => "start_date",:type => "date", :required => ""}/
-            .form-group.col-6
-              %label{:for => "enddate"} Enter End Date
-              %input#enddate{:name => "end_date",:type => "date", :required => ""}/
-          .add
-            .div1.form-row
-              .form-group.col-4
-                %label{:for => "day"} Select Day
-                %select#day.select-year.form-control.form-control-lg{:name=> "day_of_week",:required => ""}
-                  %option{:value => "M"} Monday
-                  %option{:value => "T"} Tuesday
-                  %option{:value => "W"} Wednesday
-                  %option{:value => "TR"} Thursday
-                  %option{:value => "F"} Friday
-                  %option{:value => "S"} Saturday
-                  %option{:value => "SU"} Sunday
-              .form-group.col-4   
-                %label{:for => "starttime"} From
-                %input#starttime{:name => "start_time", :required => "", :type => "time"}/
-              .form-group.col-4   
-                %label{:for => "endtime"} From
-                %input#endtime{:name => "end_time", :required => "", :type => "time"}/
-            .form-row    
-              %button.btn-delete.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.mdl-button--colored Delete Schedule
-              %button.btn-copy.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.offset-2.mdl-button--colored Add Schedule
+      .form-row
+        .form-group.col-6
+          %label{:for => "year"} Select Year of Study
+          %select#year.select-year.form-control.form-control-lg
+            %option{:value => "Freshman"} Freshman
+            %option{:value => "Sophomore"} Sophomore
+            %option{:value => "Junior"} Junior
+            %option{:value => "Senior"} Senior
+            %option{:value => "Graduate"} Graduate
+        .form-group.col-6
+          %label{:for => "phone"} Enter Phone Number
+          %input#phone.form-control.mdl-textfield__input{:pattern => "-?[0-9]*(\\.[0-9]+)?", :type => "text"}/
+          %span.mdl-textfield__error Input is not a number!
+        
+      %h5 Enter Study Plan:
+    
+      #subject-list
+        #single-subject-0
+          =render "setup/partials/subject_form"
+        #single-subject-1
+          =render "setup/partials/subject_form", id: "first_subject"
               
-          .form-row.add-subject
-            %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-10.mdl-button--colored Add Subject
-      
+      .form-row.add-subject
+        %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-10.mdl-button--colored{:type => "button"} Add Subject
+  
     %button.btn-submit.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--accent{:type => "submit", :value => ""}
       %i.material-icons arrow_forward
