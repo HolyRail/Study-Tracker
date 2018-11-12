@@ -2,17 +2,17 @@
     .form-row
         .form-group.col-6
             %label{:for => "subject"} Enter Subject Name
-            %input#subject.form-control.mdl-textfield__input{:type => "text"}/
+            %input#subject.form-control.mdl-textfield__input{:type => "text",:name=>"name"}/
         .form-group.col-6
             %label{:for => "hours"} Enter Hours Planned
-            %input#hours.form-control.mdl-textfield__input{:type => "number"}/
+            %input#hours.form-control.mdl-textfield__input{:type => "number",:name=>"hours"}/
     .form-row
         .form-group.col-6
             %label{:for => "startdate"} Enter Start Date
-            %input#startdate{:type => "date", :required => ""}/
+            %input#startdate{:type => "date", :required => "",:name=>"start_date"}/
         .form-group.col-6
             %label{:for => "enddate"} Enter End Date
-            %input#enddate{:type => "date", :required => ""}/
+            %input#enddate{:type => "date", :required => "",:name=>"end_date"}/
     .schedule-list.add
         #single-schedule-0.div1.form-row
             =render "setup/partials/schedule_form"

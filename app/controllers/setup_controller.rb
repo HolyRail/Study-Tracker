@@ -7,6 +7,7 @@ class SetupController < ApplicationController
   end
   
   def create
+    print("HELLO")
     print(params)
     @subject = Subjects.new
     @subject.name = params[:name]
