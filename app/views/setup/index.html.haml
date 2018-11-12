@@ -16,8 +16,8 @@
             %option{:value => "Senior"} Senior
             %option{:value => "Graduate"} Graduate
         .form-group.col-6
-          %label{:for => "phone"} Enter Phone Number
-          %input#phone.form-control.mdl-textfield__input{:pattern => "-?[0-9]*(\\.[0-9]+)?", :type => "text",:name=> "phone_no"}/
+          %label{:for => "phone"} Enter Phone Number 
+          %input#phone.form-control.mdl-textfield__input{:pattern => "^\s*[0-9]{10}$", :type => "text",:name=> "phone_no"}/
           %span.mdl-textfield__error Input is not a number!
         
       %h5 Enter Study Plan:
@@ -31,5 +31,5 @@
       .form-row.add-subject
         %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-10.mdl-button--colored{:type => "button"} Add Subject
   
-      %button.btn-submit.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--accent{:type => "submit", :value => ""}
-        %i.material-icons arrow_forward
+  %button.btn-submit.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--accent{:type => "submit", :value => ""}
+    %i.material-icons arrow_forward
