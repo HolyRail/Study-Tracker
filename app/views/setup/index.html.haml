@@ -1,7 +1,7 @@
 %header.mdl-layout__header
   %h4.setup-header Create Account
 .container
-  %form{:action => setup_create_path, :method => :post, :novalidate => ""}
+  %form{:action => setup_create_path, :method => :post, :novalidate => "", :id => 'setup_form'}
     .container
       %h5.username
         Name:

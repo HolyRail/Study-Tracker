@@ -28,7 +28,7 @@ copysubject = ->
   return
 
 validateStartDate = ->
-  alert("Wah modiji Wah!")
+  alert("validateStartDate")
   dateString = document.getElementById('startdate').value
   startDate = new Date(dateString)
   today = new Date
@@ -38,7 +38,7 @@ validateStartDate = ->
   true
 
 validateEndDate = ->
-  alert("Wah modiji Wah!!")
+  alert("validateEndDate")
   dateString = document.getElementById('enddate').value
   endDate = new Date(dateString)
   dateString = document.getElementById('startdate').value
@@ -48,6 +48,25 @@ validateEndDate = ->
     return false
   true
 
+parseAndValidate = ->
+  formObj = parseForm()
+  if validate(formObj)
+    #send to controller
+  else
+    #display error
+    
+parseForm = ->
+  formObj = {}
+  formObj['subjects'] = []
+  $subjects = $('div[id^="single-subject"]')
+  i = 1
+  while i < $subjects.length
+    temp_subj = {}
+    
+    $('#' + $subjects[i].id).find('div[id="subject"]')
+    i++
+  
+    
 $(document).ready ->
  $ ->
    $('button[class*=btn-copy]').on 'click', copyschedule
@@ -58,7 +77,7 @@ $(document).ready ->
  $ ->
    $('.btn-subject').on 'click', copysubject
  $ ->
-   $('.btn-submit').on 'click', validateStartDate, validateEndDate
+   $('.btn-submit').on 'click', parseAndValidate
    return
  return
 return
