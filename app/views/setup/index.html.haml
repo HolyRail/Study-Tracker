@@ -32,6 +32,5 @@
         %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-10.mdl-button--colored{:type => "button"} Add Subject
   
       
-      = button_to "Add", setup_create_path, 
-      :id => "button_submit",
-      :class => "btn-submit mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--accent", :method => :post, :type => "button"
+      %button#button_submit.btn-submit.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored{:type => "button"}
+        %i.material-icons arrow_forward

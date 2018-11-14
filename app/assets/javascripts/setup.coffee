@@ -58,13 +58,29 @@ parseAndValidate = ->
 parseForm = ->
   formObj = {}
   formObj['subjects'] = []
-  $subjects = $('div[id^="single-subject"]')
+  subjects = $('div[id^="single-subject"]')
   i = 1
-  while i < $subjects.length
+  while i < subjects.length
     temp_subj = {}
-    
-    $('#' + $subjects[i].id).find('div[id="subject"]')
+    subject = $(subjects[i])
+    temp_subj['name'] = subject.find('input[id="subject"]').val()
+    temp_subj['hours'] = subject.find('input[id="hours"]').val()
+    temp_subj['start_date'] = subject.find('input[id="startdate"]').val()
+    temp_subj['end_date'] = subject.find('input[id="enddate"]').val()
+    temp_subj['schedules'] = []
+    schedules = subject.find('div[id^="single-schedule"]')
+    j=1
+    while j < schedules.length
+      temp_sched = {}
+      schedule = $(schedules[j])
+      temp_sched['day'] = schedule.find('select[id="day"]').val()
+      temp_sched['start'] = schedule.find('input[id="starttime"]').val()
+      temp_sched['end'] = schedule.find('input[id="endtime"]').val()
+      temp_subj['schedules'].push(temp_sched)
+      j++
+    formObj['subjects'].push(temp_subj)
     i++
+  return formObj
   
     
 $(document).ready ->
