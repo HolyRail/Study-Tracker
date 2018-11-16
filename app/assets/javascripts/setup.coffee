@@ -27,34 +27,108 @@ copysubject = ->
   $div.after $newsched
   return
 
-validateStartDate = ->
-  alert("validateStartDate")
-  dateString = document.getElementById('startdate').value
-  startDate = new Date(dateString)
+validateStartDate = (startDate) ->
+  # validate that date entered is not in past
   today = new Date
+  
+  if startDate == ""
+    console.log("startDate is invalid")
+    return false
+  
+  startDate = new Date(startDate)
+  
   if startDate < today
-    $('#startdate').after '<p>You sure, you can time travel?.</p>'
+    console.log("You sure, you can time travel")
+    #$('#startdate').after '<p>You sure, you can time travel?.</p>'
     return false
   true
 
-validateEndDate = ->
-  alert("validateEndDate")
-  dateString = document.getElementById('enddate').value
-  endDate = new Date(dateString)
-  dateString = document.getElementById('startdate').value
-  startDate = new Date(dateString)
+validateEndDate = (endDate, startDate) ->
+  
+  if endDate == ""
+    console.log("endDate is invalid")
+    return false
+  
+  startDate = new Date(startDate)
+  endDate = new Date(endDate)  
+  
   if endDate < startDate
-    $('#enddate').after '<p>Wah Modiji Wah!</p>'
+    console.log("endDate less than startDate")
+    #$('#enddate').after '<p>Wah Modiji Wah!</p>'
     return false
   true
+  
+validateSubjectName = (subject) ->
+  if subject == ""
+    console.log("subject is invalid")
+    #$('#subject').after '<p>Empty, eh? </p>'
+    return false
+  true  
+  
+validateHours = (hours) ->
+  if hours == "" || hours <= 0
+    console.log("hours can not be empty")
+    return false
+  true  
 
+totalHours = 0
+totalHoursAllocated = (end, start) ->
+  # As Professor Bettati would say, this is programming at the level of a baboon
+  # but the following hacky way gets us the time difference
+  
+  timeStart = new Date('01/01/2007 ' + start).getHours()
+  timeEnd = new Date('01/01/2007 ' + end).getHours()
+  hourDiff = timeEnd - timeStart 
+  # collect hours
+  totalHours += hourDiff  
+  
+validateHoursAllocated = (hours) ->
+  if totalHours != hours
+    console.log("hours are not consistent")
+    totalHours = 0
+    return false
+  totalHours = 0
+  true  
+  
 parseAndValidate = ->
   formObj = parseForm()
-  if validate(formObj)
+  validate(formObj)
+  #if validate(formObj)
     #send to controller
-  else
+  #else
     #display error
+
+validate = (formObj) ->
+  json_s = JSON.stringify(formObj)
+  json = JSON.parse(json_s)
+  i = 0                                       # to iterate subjects
+
+  while i < json.subjects.length
     
+    subject = json.subjects[i].name
+    validateSubjectName(subject)
+    
+    startDate = json.subjects[i].start_date
+    validateStartDate(startDate)
+    
+    endDate = json.subjects[i].end_date
+    validateEndDate(endDate, startDate)
+    
+    hours = json.subjects[i].hours
+    validateHours(hours)
+    
+    schedules = json.subjects[i].schedules
+    j = 0                                     # to iterate schedules
+    diff = 0                                  # will collect total hours
+    while j < schedules.length
+      # total time should be equal to 'hours' alloted
+      totalHoursAllocated(schedules[j].end, schedules[j].start)
+      j++
+    
+    validateHoursAllocated(hours)
+      
+    i++
+  
 parseForm = ->
   formObj = {}
   formObj['subjects'] = []
