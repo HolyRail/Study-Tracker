@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_12_190926) do
+ActiveRecord::Schema.define(version: 2018_11_16_060220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2018_11_12_190926) do
     t.integer "hours"
     t.integer "day_of_week"
     t.bigint "subjects_id"
+    t.time "start_time"
+    t.time "end_time"
     t.index ["subjects_id"], name: "index_schedules_on_subjects_id"
   end
 

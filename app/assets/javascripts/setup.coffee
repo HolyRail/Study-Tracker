@@ -92,11 +92,60 @@ validateHoursAllocated = (hours) ->
   
 parseAndValidate = ->
   formObj = parseForm()
+  ###
+  formObj = {
+      subjects : [{
+        end_date: "2018-11-02",
+        hours: "1",
+        name: "Physics"
+        schedules: [{
+            day: "mon",
+            start: "11:11",
+            end: "12:35"
+          },{
+            day: "tue",
+            start: "23:12",
+            end: " 23:35"
+          }]
+        },{
+        end_date: "2018-11-03",
+        hours: "1",
+        name: "Chemsitry"
+        schedules: [{
+            day: "wed",
+            start: "1:11",
+            end: "13:35"
+          },{
+            day: "thur",
+            start: "4:12",
+            end: " 5:35"
+          },{
+            day: "fri",
+            start: "2:12",
+            end: " 3:35"
+          }]
+        }]
+    }
+  ###
+
   validate(formObj)
   #if validate(formObj)
     #send to controller
   #else
     #display error
+
+  $.ajax
+    type: 'POST'
+    url: '../setup/create'
+    data: formObj
+    dataType: 'text'
+    success: (resultData) ->
+      alert 'Save Complete!'
+  return
+  alert 'Save Incomplete!'
+
+
+
 
 validate = (formObj) ->
   json_s = JSON.stringify(formObj)
@@ -113,7 +162,7 @@ validate = (formObj) ->
     
     endDate = json.subjects[i].end_date
     validateEndDate(endDate, startDate)
-    
+  
     hours = json.subjects[i].hours
     validateHours(hours)
     
@@ -128,6 +177,7 @@ validate = (formObj) ->
     validateHoursAllocated(hours)
       
     i++
+  
   
 parseForm = ->
   formObj = {}
