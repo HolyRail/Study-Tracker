@@ -50,6 +50,40 @@ validateEndDate = ->
 
 parseAndValidate = ->
   formObj = parseForm()
+  #sample formObj
+  # formObj = {
+  #   subjects : [{
+  #     end_date: "2018-11-02",
+  #     hours: "1",
+  #     name: "Physics"
+  #     schedules: [{
+  #         day: "mon",
+  #         start: "11:11",
+  #         end: "12:35"
+  #       },{
+  #         day: "tue",
+  #         start: "23:12",
+  #         end: " 23:35"
+  #       }]
+  #     },{
+  #     end_date: "2018-11-03",
+  #     hours: "1",
+  #     name: "Chemsitry"
+  #     schedules: [{
+  #         day: "wed",
+  #         start: "1:11",
+  #         end: "13:35"
+  #       },{
+  #         day: "thur",
+  #         start: "4:12",
+  #         end: " 5:35"
+  #       },{
+  #         day: "fri",
+  #         start: "2:12",
+  #         end: " 3:35"
+  #       }]
+  #     }]
+  # }
   if validate(formObj)
     #send to controller
   else
