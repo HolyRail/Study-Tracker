@@ -50,10 +50,16 @@ validateEndDate = ->
 
 parseAndValidate = ->
   formObj = parseForm()
-  if validate(formObj)
-    #send to controller
-  else
-    #display error
+  
+  $.ajax
+    type: 'POST'
+    url: '../setup/create'
+    data: formObj
+    dataType: 'text'
+    success: (resultData) ->
+      alert 'Save Complete!'
+  return
+  alert 'Save Incomplete!'
     
 parseForm = ->
   formObj = {}

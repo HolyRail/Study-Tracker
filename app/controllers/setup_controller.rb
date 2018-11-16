@@ -20,23 +20,32 @@ class SetupController < ApplicationController
   end  
   
   def create
-    print("HELLO")
-    print(params)
-    @subject = Subjects.new
-    @subject.name = params[:name]
-    @subject.start_date = params[:start_date]
-    @subject.end_date = params[:end_date]
-    @subject.users_id = @current_user.id
+    subjects = params[:subjects]
     
-    @schedule = Schedules.new
-    @schedule.hours = params[:hours]
-    @schedule.day_of_week = params[:day_of_week].to_i
-    @schedule.subjects_id = @subject.id
+    print(subjects)
+    subjects.each do |key,value|
+      print(key,' ')
+      print('VALUE ',value)
+      subject = Subjects.new
+      subject.name = value[:name] 
+      subject.start_date = value[:start_date]
+      subject.end_date = value[:end_date]
+      schedule_list = value[:schedules]
+      schedule_list.each do |k,v|
+        print('VALUE sch',v)
+        sch = Schedules.new
+        sch.hours = v[:hours]
+        sch.day_of_week = v[:day]
+        sch.start_time = v[:start]
+        sch.end_time = v[:end]
+        subject.schedules << sch
+      end
+      @current_user.subjects << subject
+    end  
+    #@current_user.update_attributes(:phone_no => params[:phone_no])
     
     
-    @schedule.save
-    
-    if @subject.save and @current_user.update_attributes(:phone_no => params[:phone_no])
+    if @current_user.save?
       flash[:success] = "Successfully saved!"
       redirect_to dashboard_index_path
     end
