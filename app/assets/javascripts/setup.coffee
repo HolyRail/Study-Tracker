@@ -75,9 +75,10 @@ totalHours = 0
 totalHoursAllocated = (end, start) ->
   # As Professor Bettati would say, this is programming at the level of a baboon
   # but the following hacky way gets us the time difference
+  timeStart = new Date('01/19/2038 ' + start).getHours()
+  timeEnd = new Date('01/19/2038 ' + end).getHours()
+  # the end is near
   
-  timeStart = new Date('01/01/2007 ' + start).getHours()
-  timeEnd = new Date('01/01/2007 ' + end).getHours()
   hourDiff = timeEnd - timeStart 
   # collect hours
   totalHours += hourDiff  
