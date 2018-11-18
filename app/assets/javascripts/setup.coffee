@@ -130,21 +130,19 @@ parseAndValidate = ->
   ###
 
   validate(formObj)
-  #if validate(formObj)
+  if validate(formObj)
     #send to controller
-  #else
+    $.ajax
+      type: 'POST'
+      url: '../setup/create'
+      data: formObj
+      dataType: 'text'
+      success: (resultData) ->
+        alert 'Save Complete!'
+    return
+    alert 'Save Incomplete!'
+  else
     #display error
-
-  $.ajax
-    type: 'POST'
-    url: '../setup/create'
-    data: formObj
-    dataType: 'text'
-    success: (resultData) ->
-      alert 'Save Complete!'
-  return
-  alert 'Save Incomplete!'
-
 
 
 
@@ -156,17 +154,19 @@ validate = (formObj) ->
   while i < json.subjects.length
     
     subject = json.subjects[i].name
-    validateSubjectName(subject)
+    if(!validateSubjectName(subject))
+      return false
     
     startDate = json.subjects[i].start_date
-    validateStartDate(startDate)
-    
+    if(!validateStartDate(startDate))
+      return false
     endDate = json.subjects[i].end_date
-    validateEndDate(endDate, startDate)
+    if(!validateEndDate(endDate, startDate))
+      return false
   
     hours = json.subjects[i].hours
-    validateHours(hours)
-    
+    if(!validateHours(hours))
+      return false
     schedules = json.subjects[i].schedules
     j = 0                                     # to iterate schedules
     diff = 0                                  # will collect total hours
@@ -175,9 +175,12 @@ validate = (formObj) ->
       totalHoursAllocated(schedules[j].end, schedules[j].start)
       j++
     
-    validateHoursAllocated(hours)
+    if(!validateHoursAllocated(hours))
+      return false
       
     i++
+    
+  return true  
   
   
 parseForm = ->
