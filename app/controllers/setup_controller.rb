@@ -3,7 +3,7 @@ class SetupController < ApplicationController
  
   
   def index
-    @current_user ||= Users.find_by_id(session[:user_id])
+    @current_user ||= User.find_by_id(session[:user_id])
   end
   
   def day_to_int(day_of_week)
@@ -24,26 +24,28 @@ class SetupController < ApplicationController
     subjects.each do |key,value|
       print(key,' ')
       print('VALUE ',value)
-      subject = Subjects.new
+      subject = Subject.new
       subject.name = value[:name] 
       subject.start_date = value[:start_date]
       subject.end_date = value[:end_date]
       schedule_list = value[:schedules]
+      subject.hours = value[:hours]
       print(subject)
       schedule_list.each do |k,v|
         print('VALUE sch',v)
-        sch = Schedules.new
-        sch.hours = v[:hours]
+        sch = Schedule.new
+        #sch.hours = v[:hours]
         sch.day_of_week = v[:day]
         sch.start_time = v[:start]
         sch.end_time = v[:end]
-        subject.schedule << sch
+        subject.schedules << sch
       end
+      print(@current_user)
       @current_user.subjects << subject
     end  
     
     
-    if @current_user.save?
+    if @current_user.save!
       flash[:success] = "Successfully saved!"
       redirect_to dashboard_index_path
     end
