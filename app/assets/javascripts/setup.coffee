@@ -27,15 +27,26 @@ copysubject = ->
   $div.after $newsched
   return
 
+dateToday = ->
+  today = new Date
+  dd = today.getDate()
+  mm = today.getMonth() + 1
+  #January is 0!
+  yyyy = today.getFullYear()
+  if dd < 10
+    dd = '0' + dd
+  if mm < 10
+    mm = '0' + mm
+  today = yyyy + '-' + mm + '-' + dd
+  return today
+  
 validateStartDate = (startDate) ->
   # validate that date entered is not in past
-  today = new Date
-  
+  today = dateToday()
+    
   if startDate == ""
     console.log("startDate is invalid")
     return false
-  
-  startDate = new Date(startDate)
   
   if startDate < today
     console.log("You sure, you can time travel")
@@ -48,9 +59,6 @@ validateEndDate = (endDate, startDate) ->
   if endDate == ""
     console.log("endDate is invalid")
     return false
-  
-  startDate = new Date(startDate)
-  endDate = new Date(endDate)  
   
   if endDate < startDate
     console.log("endDate less than startDate")
@@ -77,14 +85,14 @@ totalHoursAllocated = (end, start) ->
   # but the following hacky way gets us the time difference
   timeStart = new Date('01/19/2038 ' + start).getHours()
   timeEnd = new Date('01/19/2038 ' + end).getHours()
-  # the end is near
-  
+  # the end is near)
+ 
   hourDiff = timeEnd - timeStart 
   # collect hours
-  totalHours += hourDiff  
+  totalHours += hourDiff
   
 validateHoursAllocated = (hours) ->
-  if totalHours != hours
+  if totalHours != parseInt(hours)
     console.log("hours are not consistent")
     totalHours = 0
     return false
@@ -129,7 +137,6 @@ parseAndValidate = ->
     }
   ###
 
-  validate(formObj)
   if validate(formObj)
     #send to controller
     $.ajax
@@ -150,23 +157,24 @@ validate = (formObj) ->
   json_s = JSON.stringify(formObj)
   json = JSON.parse(json_s)
   i = 0                                       # to iterate subjects
-
   while i < json.subjects.length
-    
+
     subject = json.subjects[i].name
     if(!validateSubjectName(subject))
       return false
     
+    hours = json.subjects[i].hours
+    if(!validateHours(hours))
+      return false
+      
     startDate = json.subjects[i].start_date
     if(!validateStartDate(startDate))
       return false
+      
     endDate = json.subjects[i].end_date
     if(!validateEndDate(endDate, startDate))
       return false
   
-    hours = json.subjects[i].hours
-    if(!validateHours(hours))
-      return false
     schedules = json.subjects[i].schedules
     j = 0                                     # to iterate schedules
     diff = 0                                  # will collect total hours
@@ -208,6 +216,7 @@ parseForm = ->
       j++
     formObj['subjects'].push(temp_subj)
     i++
+  console.log(formObj)  
   return formObj
   
     
