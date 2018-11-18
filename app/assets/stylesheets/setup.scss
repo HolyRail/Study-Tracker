@@ -1,0 +1,65 @@
+// Place all the styles related to the Setup controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.setup-header{
+	padding-left:10px;
+}
+
+.select-year{
+	display:inherit;
+}
+form {
+	padding: 20px;
+	position:relative;
+}
+.mdl-layout__header{
+	display:flex;
+}
+
+.username{
+	padding-bottom:10px;
+}
+
+.btn-copy{
+	float:right;
+	margin:auto;
+}
+
+.btn-delete{
+	float: left;
+	margin:auto;
+}
+
+.btn-subject{
+	margin:auto;
+}
+
+.add-subject{
+	padding: 20px;
+}
+
+.btn-submit{
+	position: fixed;
+	right:    5%;
+	bottom:   10%;	
+}
+
+#single-subject-0 {
+	display: none;
+}
+
+#single-schedule-0 {
+	display: none;
+}
+
+#subjectform{
+	padding-top: 15px;
+}
+
+@media screen and (max-width: 600px){
+	form{
+		.container{
+			width:100%;
+		}
+	}
+}

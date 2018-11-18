@@ -1,0 +1,19 @@
+.form-group.col-4
+    %label{:for => "day"} Select Day
+    /%span{:style => "color: red"}*
+    %select#day.select-year.form-control.form-control-lg{:name=> "day_of_week"}
+        %option{:value => "mon"} Monday
+        %option{:value => "tue"} Tuesday
+        %option{:value => "wed"} Wednesday
+        %option{:value => "thu"} Thursday
+        %option{:value => "fri"} Friday
+        %option{:value => "sat"} Saturday
+        %option{:value => "sun"} Sunday
+.form-group.col-4   
+    %label{:for => "starttime"} From
+    %span{:style => "color: red"}*
+    %input#starttime{:name => "start_time", :required => "", :type => "time", }/
+.form-group.col-4   
+    %label{:for => "endtime"} To
+    %span{:style => "color: red"}*
+    %input#endtime{:name => "end_time", :required => "", :type => "time"}/

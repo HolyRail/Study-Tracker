@@ -10,36 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_18_201839) do
+ActiveRecord::Schema.define(version: 2018_11_18_180937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "schedules", force: :cascade do |t|
+    t.integer "hours"
+    t.integer "day_of_week"
+    t.bigint "subjects_id"
     t.time "start_time"
     t.time "end_time"
-    t.integer "day_of_week"
-    t.bigint "subject_id"
-    t.index ["subject_id"], name: "index_schedules_on_subject_id"
+    t.index ["subjects_id"], name: "index_schedules_on_subjects_id"
   end
 
   create_table "subjects", force: :cascade do |t|
     t.string "name", null: false
     t.date "start_date"
     t.date "end_date"
-    t.integer "hours"
+    t.bigint "users_id"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_subjects_on_user_id"
+    t.index ["users_id"], name: "index_subjects_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.bigint "phone_no"
-    t.string "provider"
     t.string "year"
     t.string "first_name"
     t.string "last_name"
+    t.string "provider"
     t.string "uid"
+    t.string "UIN"
   end
 
+  add_foreign_key "schedules", "subjects", column: "subjects_id"
+  add_foreign_key "subjects", "users", column: "users_id"
 end
