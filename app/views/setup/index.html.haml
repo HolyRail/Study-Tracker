@@ -9,6 +9,7 @@
       .form-row
         .form-group.col-6
           %label{:for => "year"} Select Year of Study
+          %span{:style => "color: red"}*
           %select#year.select-year.form-control.form-control-lg{:name => "year"}
             %option{:value => "Freshman"} Freshman
             %option{:value => "Sophomore"} Sophomore
