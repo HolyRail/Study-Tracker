@@ -9,7 +9,7 @@
 %header
     %nav.row 
         %div.nav-wrapper.black
-            .col.s3.left
+            .col.s3
                 -#%a.brand-logo.brand-logo-icon{:href => "schedules_path"} 
                 -#%img{:alt => "Logo", :src => "https://campozark.com/sites/default/files/styles/mosaic_constrained/public/tamu.png?itok=z3Qu9nQg", :width => "75px", :height => "60px"}/ 
                 %img{:alt => "Logo", :src => "images/ASC logo_horizontal_maroon_RGB copy.png", :width => "250px", :height => "60px"}/ 
@@ -17,8 +17,8 @@
                 -#%a.brand-logo{:href => "#"} Logo
                 -#%a.sidenav-trigger{:href => "#", :data-target => "mobile-nav"}
                 
-            .col.s5.center
-                %a.brand-logo{:href => ""} StudyTracker
+            .col.s6.brand-logo
+                StudyTracker
             .col.s3.right    
                 %ul#centered.right.hide-on-med-and-down
                     // %li
@@ -39,10 +39,9 @@
 
 %main.gray.lighten-4
     .login-container.mdl-grid
-        .btn#main_id.white.darken-4.col.s10.m4.l6.login-button
+        .btn#main_id.white.darken-4.col.s10.m4.l6.login-button.center
             %a.login-link{:href => "/auth/google_oauth2", :style => "text-transform:none"}
-                .left
-                    %img{:alt => "Google \"G\" Logo", :src => "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png", :width => "30px"}/
+                %img{:alt => "Google \"G\" Logo", :src => "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png", :width => "30px"}/
                 Login with Google
 
 %footer.page-footer#site-footer
