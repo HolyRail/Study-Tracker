@@ -18,6 +18,12 @@
 }
 
 #site-footer {
-height: 50px;
+
 background: #F37B7C;
+height: auto;
+}
+
+.nav-wrapper{
+    
+    width: 100%;
 }
