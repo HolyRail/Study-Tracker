@@ -1,3 +1,5 @@
+errorList = [] 
+    
 copyschedule = ->
   $div = $('div[id^="single-schedule"]:last')
   num = parseInt($div.prop('id').match(/\d+/g), 10) + 1
@@ -26,6 +28,15 @@ copysubject = ->
   $newsched.find('.btn-delete').on 'click', deleteschedule
   $div.after $newsched
   return
+  
+deletesubject = ->
+  $div_current = this.closest('div[id^="single-subject"]')
+  parent_header = $div_current.id
+  console.log(parent_header)
+  $div = $("#" + parent_header)
+  $div.remove()
+  return
+  
 
 dateToday = ->
   today = new Date
@@ -45,11 +56,11 @@ validateStartDate = (startDate) ->
   today = dateToday()
     
   if startDate == ""
-    console.log("startDate is invalid")
+    errorList.push "Start date is empty."
     return false
   
   if startDate < today
-    console.log("You sure, you can time travel")
+    errorList.push "Start date is in the past!"
     #$('#startdate').after '<p>You sure, you can time travel?.</p>'
     return false
   true
@@ -57,25 +68,25 @@ validateStartDate = (startDate) ->
 validateEndDate = (endDate, startDate) ->
   
   if endDate == ""
-    console.log("endDate is invalid")
+    errorList.push "End date can not be empty"
     return false
   
   if endDate < startDate
-    console.log("endDate less than startDate")
+    errorList.push "End date can not be less than start date"
     #$('#enddate').after '<p>Wah Modiji Wah!</p>'
     return false
   true
   
 validateSubjectName = (subject) ->
   if subject == ""
-    console.log("subject is invalid")
+    errorList.push "Subject field can not be empty"
     #$('#subject').after '<p>Empty, eh? </p>'
     return false
   true  
   
 validateHours = (hours) ->
   if hours == "" || hours <= 0
-    console.log("hours can not be empty")
+    errorList.push "hours field can not be empty"
     return false
   true  
 
@@ -85,7 +96,7 @@ totalHoursAllocated = (end, start) ->
   # but the following hacky way gets us the time difference
   timeStart = new Date('01/19/2038 ' + start).getHours()
   timeEnd = new Date('01/19/2038 ' + end).getHours()
-  # the end is near)
+  # the end is near
  
   hourDiff = timeEnd - timeStart 
   # collect hours
@@ -93,7 +104,7 @@ totalHoursAllocated = (end, start) ->
   
 validateHoursAllocated = (hours) ->
   if totalHours != parseInt(hours)
-    console.log("hours are not consistent")
+    errorList.push "Total hours are not consistent."
     totalHours = 0
     return false
   totalHours = 0
@@ -136,7 +147,9 @@ parseAndValidate = ->
         }]
     }
   ###
-
+  errorList = []
+  errorText = ''
+  $('#error1').remove()
   if validate(formObj)
     #send to controller
     $.ajax
@@ -147,9 +160,16 @@ parseAndValidate = ->
       success: (resultData) ->
         alert 'Save Complete!'
     return
-    alert 'Save Incomplete!'
   else
-    #display error
+    error = 0
+    errorText = '<li id="error1">' 
+    while error < errorList.length
+      errorText += '<span> '+ errorList[error] + '</span>'
+      error++
+    errorText+= '</li>'
+    $('#error').after(errorText)
+
+    #alert 'Totally unproductive error message'
 
 
 
@@ -189,8 +209,7 @@ validate = (formObj) ->
     i++
     
   return true  
-  
-  
+
 parseForm = ->
   formObj = {}
   formObj['subjects'] = []
@@ -216,7 +235,7 @@ parseForm = ->
       j++
     formObj['subjects'].push(temp_subj)
     i++
-  console.log(formObj)  
+ 
   return formObj
   
     
@@ -229,6 +248,8 @@ $(document).ready ->
    return
  $ ->
    $('.btn-subject').on 'click', copysubject
+ $ ->
+   $('.btn-del-subject').on 'click', deletesubject   
  $ ->
    $('.btn-submit').on 'click', parseAndValidate
    return
