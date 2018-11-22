@@ -92,14 +92,17 @@ validateHours = (hours) ->
     return false
   true  
 
-totalHours = 0
-totalHoursAllocated = (end, start) ->
+getTime = (time) ->
   # As Professor Bettati would say, this is programming at the level of a baboon
   # but the following hacky way gets us the time difference
-  timeStart = new Date('01/19/2038 ' + start).getHours()
-  timeEnd = new Date('01/19/2038 ' + end).getHours()
+  return (new Date('01/19/2038 ' + time).getHours())
   # the end is near
  
+totalHours = 0
+totalHoursAllocated = (end, start) ->
+  timeStart = getTime(start)
+  timeEnd = getTime(end)
+  
   hourDiff = timeEnd - timeStart 
   # collect hours
   totalHours += hourDiff
@@ -111,6 +114,46 @@ validateHoursAllocated = (hours) ->
     return false
   totalHours = 0
   true  
+
+
+validateDaysOfWeekOverlap = (schedules) ->
+  j = 0
+  # dictionary that maintains days scheduled
+  day_of_week_map = {}
+  while j < schedules.length
+    key = schedules[j].day    
+   
+    if (key of day_of_week_map)
+      # validate
+      current = day_of_week_map[key]
+      individual_schedules = current.split(";")
+      # indivi_sche = ["a-b", "c-d"]
+      #for each individual_schedules
+      iter = 0
+      while iter < individual_schedules.length
+        valid = false
+        start = individual_schedules[iter].split("-")[0]
+        end = individual_schedules[iter].split("-")[1]
+        if getTime(start) < getTime(schedules[j].start) && 
+                                      getTime(schedules[j].start) < getTime(end)
+          if getTime(start) < getTime(schedules[j].end) && 
+                                        getTime(schedules[j].end) < getTime(end)
+            valid = true
+
+        # if success, update
+        if valid
+          day_of_week_map[key] += ';'+ schedules[j].start + "-" + schedules[j].end
+        else
+          errorList.push  "multiple schedules for " + day_of_week_map[key] + " on " + key
+          return false
+        i++ 
+    else
+      # if not in the dictionary, add
+      day_of_week_map[key] = schedules[j].start + "-" + schedules[j].end
+    
+    j++  
+   
+    console.log(day_of_week_map)  
   
 parseAndValidate = ->
   formObj = parseForm()
@@ -174,7 +217,7 @@ parseAndValidate = ->
     #alert 'Totally unproductive error message'
 
 
-
+feature = 1
 validate = (formObj) ->
   json_s = JSON.stringify(formObj)
   json = JSON.parse(json_s)
@@ -198,6 +241,7 @@ validate = (formObj) ->
       return false
   
     schedules = json.subjects[i].schedules
+    
     j = 0                                     # to iterate schedules
     diff = 0                                  # will collect total hours
     while j < schedules.length
@@ -207,7 +251,11 @@ validate = (formObj) ->
     
     if(!validateHoursAllocated(hours))
       return false
-      
+    
+    if feature
+      if(!validateDaysOfWeekOverlap(schedules))
+        return false 
+        
     i++
     
   return true  
