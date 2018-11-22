@@ -33,17 +33,19 @@ form {
 
 .btn-subject{
 	margin:auto;
-	//float:right;
-	//margin:23px;
+	float:right;
+	//padding: 30px;
+
 }
 
-.add-subject{
-	padding: 20px;
-}
-// .btn-del-subject {
-// 	float:left;
-// 	margin:auto;
+// .add-subject{
+// 	padding: 20px;
 // }
+
+.btn-del-subject {
+	float:left;
+	margin:auto;
+}
 
 .btn-submit{
 	position: fixed;

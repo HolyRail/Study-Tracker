@@ -26,13 +26,15 @@ copysubject = ->
   $newsched = $div_orig.clone().prop('id', 'single-subject-' + num)
   $newsched.find('.btn-copy').on 'click', copyschedule
   $newsched.find('.btn-delete').on 'click', deleteschedule
+  $newsched.find('.btn-del-subject').on 'click', deletesubject
   $div.after $newsched
   return
   
 deletesubject = ->
   $div_current = this.closest('div[id^="single-subject"]')
   parent_header = $div_current.id
-  console.log(parent_header)
+  
+  console.log("hola", parent_header)
   $div = $("#" + parent_header)
   $div.remove()
   return
