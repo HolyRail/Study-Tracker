@@ -185,3 +185,41 @@ _:-ms-input-placeholder, :root .demo-graph {
   margin-bottom: 40px;
   z-index: 900;
 }
+
+.chart-text {
+  font: 16px/1.4em "Montserrat", Arial, sans-serif;
+  fill: #000;
+  -moz-transform: translateY(0.25em);
+  -ms-transform: translateY(0.25em);
+  -webkit-transform: translateY(0.25em);
+  transform: translateY(0.25em);
+}
+
+.chart-number {
+  font-size: 0.6em;
+  line-height: 1;
+  text-anchor: middle;
+  -moz-transform: translateY(-0.25em);
+  -ms-transform: translateY(-0.25em);
+  -webkit-transform: translateY(-0.25em);
+  transform: translateY(-0.25em);
+}
+
+.chart-label {
+  font-size: 0.5em;
+  text-transform: uppercase;
+  text-anchor: middle;
+  -moz-transform: translateY(0.1em);
+  -ms-transform: translateY(0.1em);
+  -webkit-transform: translateY(0.1em);
+  transform: translateY(0.1em);
+}
+
+.chart-end {
+  font-size: 0.18em;
+  text-anchor: middle;
+  -moz-transform: translateY(5.8em);
+  -ms-transform: translateY(5.8em);
+  -webkit-transform: translateY(5.8em);
+  transform: translateY(5.8em);
+}
