@@ -3,22 +3,6 @@
 %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"}
 
 !!!
-
-//   Material Design Lite
-//   Copyright 2015 Google Inc. All rights reserved.
-  
-//   Licensed under the Apache License, Version 2.0 (the "License");
-//   you may not use this file except in compliance with the License.
-//   You may obtain a copy of the License at
-  
-//   https://www.apache.org/licenses/LICENSE-2.0
-  
-//   Unless required by applicable law or agreed to in writing, software
-//   distributed under the License is distributed on an "AS IS" BASIS,
-//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//   See the License for the specific language governing permissions and
-//   limitations under the License
-
       
 %body
 .demo-layout.mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
@@ -49,8 +33,6 @@
     .mdl-grid.demo-content
       - @out_subjects.each do |subject|
         .card-container
-          .left
-          .right
           .card
             .front
               .cover
@@ -83,8 +65,8 @@
                 .mdl-cell.mdl-cell--4-offset.mdl-cell--4-col
                   %button#update.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-10.mdl-button--colored{:type => "button"} Update
             .back
-              %ul.icons
+              %ul.icons.mdl-list
                 -subject["schedules"].each do |schedule|
-                  %li= schedule["day"] + ", " + schedule["start_time"] + " to " + schedule["end_time"]
-                  
-                
+                  %li.mdl-list__item
+                    %span.mdl-list__item-primary-content
+                      = schedule["day"] + ", " + schedule["start_time"] + " to " + schedule["end_time"]
