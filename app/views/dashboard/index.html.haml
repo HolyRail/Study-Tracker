@@ -54,7 +54,9 @@
           .card
             .front
               .cover
-                %h4= subject['name']
+                .mdl-grid
+                  .mdl-cell
+                    %h4= subject['name']
               %svg#left-graph.donut{:height => "50%", :viewbox => "0 0 42 42", :width => "40%"}
                 %circle.donut-hole{:cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954"}
                 %circle.donut-ring{:cx => "21", :cy => "21", :fill => "#fff", :r => "15.91549430918954", :stroke => "#d2d3d4", "stroke-width" => "3"}
@@ -77,6 +79,9 @@
                     #{subject['completion_rate']}
                   %text.chart-end{:x => "50%", :y => "50%"}
                     Completion-rate
+              .mdl-grid
+                .mdl-cell.mdl-cell--4-offset.mdl-cell--4-col
+                  %button#update.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-10.mdl-button--colored{:type => "button"} Update
             .back
               %ul.icons
                 -subject["schedules"].each do |schedule|
