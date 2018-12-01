@@ -48,38 +48,38 @@
   %main.mdl-layout__content.mdl-color--grey-100
     .mdl-grid.demo-content
       - @out_subjects.each do |subject|
-        .form-row
-          .form-group.col-12
-            %h4= subject['name']
-            // %h4= subject['completion_rate']
-            // hours planned subject.hours
-            
-        .demo-charts.mdl-color--white.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-grid
-          // %button#hdrbtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
-          //   %i.material-icons more_vert
-          // %ul.mdl-menu.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right{:for => "hdrbtn"}
-          // %li.mdl-menu__item Sign-out
-          
-          %svg.donut{:height => "50%", :viewbox => "0 0 42 42", :width => "50%"}
-            %circle.donut-hole{:cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954"}
-            %circle.donut-ring{:cx => "21", :cy => "21", :fill => "#fff", :r => "15.91549430918954", :stroke => "#d2d3d4", "stroke-width" => "3"}
-            %circle.donut-segment{:cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954", :stroke => "#ce4b99", "stroke-dasharray" => "50 50", "stroke-dashoffset" => "25", "stroke-width" => "3"}
-            %g.chart-text
-              %text.chart-number{:x => "50%", :y => "50%"}
-              %text.chart-label{:x => "50%", :y => "50%"}
-                #{subject['completion_rate']}
-              %text.chart-end{:x => "50%", :y => "50%"}
-                Completion-time
-
-
-          %svg.donut{:height => "50%", :viewbox => "0 0 42 42", :width => "50%"}
-            %circle.donut-hole{:cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954"}
-            %circle.donut-ring{:cx => "21", :cy => "21", :fill => "#fff", :r => "15.91549430918954", :stroke => "#d2d3d4", "stroke-width" => "3"}
-            %circle.donut-segment{:cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954", :stroke => "#ce4b99", "stroke-dasharray" => "60 40", "stroke-dashoffset" => "25", "stroke-width" => "3"}
-            %g.chart-text
-              %text.chart-number{:x => "50%", :y => "50%"}
-              %text.chart-label{:x => "50%", :y => "50%"}
-                #{subject['completion_rate']}
-              %text.chart-end{:x => "50%", :y => "50%"}
-                Completion-rate
->
+        .card-container
+          .left
+          .right
+          .card
+            .front
+              .cover
+                %h4= subject['name']
+              %svg#left-graph.donut{:height => "50%", :viewbox => "0 0 42 42", :width => "40%"}
+                %circle.donut-hole{:cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954"}
+                %circle.donut-ring{:cx => "21", :cy => "21", :fill => "#fff", :r => "15.91549430918954", :stroke => "#d2d3d4", "stroke-width" => "3"}
+                %circle.donut-segment{:cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954", :stroke => "#ce4b99", "stroke-dasharray" => "50 50", "stroke-dashoffset" => "25", "stroke-width" => "3"}
+                %g.chart-text
+                  %text.chart-number{:x => "50%", :y => "50%"}
+                  %text.chart-label{:x => "50%", :y => "50%"}
+                    #{subject['completion_rate']}
+                  %text.chart-end{:x => "50%", :y => "50%"}
+                    Completion-time
+    
+    
+              %svg#right-graph.donut{:height => "50%", :viewbox => "0 0 42 42", :width => "40%"}
+                %circle.donut-hole{:cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954"}
+                %circle.donut-ring{:cx => "21", :cy => "21", :fill => "#fff", :r => "15.91549430918954", :stroke => "#d2d3d4", "stroke-width" => "3"}
+                %circle.donut-segment{:cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954", :stroke => "#ce4b99", "stroke-dasharray" => "60 40", "stroke-dashoffset" => "25", "stroke-width" => "3"}
+                %g.chart-text
+                  %text.chart-number{:x => "50%", :y => "50%"}
+                  %text.chart-label{:x => "50%", :y => "50%"}
+                    #{subject['completion_rate']}
+                  %text.chart-end{:x => "50%", :y => "50%"}
+                    Completion-rate
+            .back
+              %ul.icons
+                -subject["schedules"].each do |schedule|
+                  %li= schedule["day"] + ", " + schedule["start_time"] + " to " + schedule["end_time"]
+                  
+                

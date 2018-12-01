@@ -36,7 +36,7 @@ class SetupController < ApplicationController
         print('VALUE sch',v)
         sch = Schedule.new
         #sch.hours = v[:hours]
-        sch.day_of_week = v[:day]
+        sch.day_of_week = day_to_int(v[:day])
         sch.start_time = v[:start]
         sch.end_time = v[:end]
         subject.schedules << sch
