@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_18_201839) do
+ActiveRecord::Schema.define(version: 2018_11_18_223456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2018_11_18_201839) do
     t.time "end_time"
     t.integer "day_of_week"
     t.bigint "subject_id"
+    t.boolean "completed"
     t.index ["subject_id"], name: "index_schedules_on_subject_id"
   end
 

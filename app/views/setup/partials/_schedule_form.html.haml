@@ -1,4 +1,4 @@
-.form-group.col-4
+.mdl-cell.mdl-cell--4-col
     %label{:for => "day"} Select Day
     /%span{:style => "color: red"}*
     %select#day.select-year.form-control.form-control-lg{:name=> "day_of_week"}
@@ -9,11 +9,11 @@
         %option{:value => "fri"} Friday
         %option{:value => "sat"} Saturday
         %option{:value => "sun"} Sunday
-.form-group.col-4   
+.mdl-cell.mdl-cell--4-col 
     %label{:for => "starttime"} From
     %span{:style => "color: red"}*
     %input#starttime{:name => "start_time", :required => "", :type => "time", }/
-.form-group.col-4   
+.mdl-cell.mdl-cell--4-col
     %label{:for => "endtime"} To
     %span{:style => "color: red"}*
     %input#endtime{:name => "end_time", :required => "", :type => "time"}/

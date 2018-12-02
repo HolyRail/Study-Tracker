@@ -1,13 +1,16 @@
+= javascript_include_tag params[:controller]
+= stylesheet_link_tag params[:controller]
 %header.mdl-layout__header
   %h4.setup-header Create Account
 .container
+  %ul#error
   %form{:action => setup_create_path, :method => :post, :novalidate => "", :id => 'setup_form'}
     .container
       %h5.username
         Name:
         %span=  @current_user.first_name + " " + @current_user.last_name
-      .form-row
-        .form-group.col-6
+      .mdl-grid
+        .mdl-cell.mdl-cell--6-col
           %label{:for => "year"} Select Year of Study
           %span{:style => "color: red"}*
           %select#year.select-year.form-control.form-control-lg{:name => "year"}
@@ -16,7 +19,7 @@
             %option{:value => "Junior"} Junior
             %option{:value => "Senior"} Senior
             %option{:value => "Graduate"} Graduate
-        .form-group.col-6
+        .mdl-cell.mdl-cell--6-col
           %label{:for => "phone"} Enter Phone Number 
           %input#phone.form-control.mdl-textfield__input{:pattern => "^\s*[0-9]{10}$", :type => "text",:name=> "phone_no"}/
           %span.mdl-textfield__error Input is not a number!
@@ -28,10 +31,12 @@
           =render "setup/partials/subject_form"
         #single-subject-1
           =render "setup/partials/subject_form", id: "first_subject"
-              
-      .form-row.add-subject
-        %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-10.mdl-button--colored{:type => "button"} Add Subject
-  
+      
+      .mdl-grid.add-subject
+        %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-cell.mdl-cell--10-col.mdl-button--colored{:type => "button"} Add Subject
+      // .mdl-grid    
+      //   %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.mdl-button--colored{:type => "button"} Add Subject
+      //   %button.btn-del-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.offset-2.mdl-button--colored{:type => "button"} Delete Subject
       
       %button#button_submit.btn-submit.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored{:type => "button"}
         %i.material-icons arrow_forward

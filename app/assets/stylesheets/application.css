@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+#centered{
+    padding: 20px 0px;
+}
+
+#site-footer {
+
+background: #F37B7C;
+height: auto;
+}
+
+.nav-wrapper{
+    
+    width: 100%;
+}

@@ -21,6 +21,8 @@ class SetupController < ApplicationController
   
   def create
     subjects = params[:subjects]
+    
+    print(subjects)
     subjects.each do |key,value|
       print(key,' ')
       print('VALUE ',value)
@@ -29,13 +31,12 @@ class SetupController < ApplicationController
       subject.start_date = value[:start_date]
       subject.end_date = value[:end_date]
       schedule_list = value[:schedules]
-      subject.hours = value[:hours]
-      print(subject)
+
       schedule_list.each do |k,v|
         print('VALUE sch',v)
         sch = Schedule.new
         #sch.hours = v[:hours]
-        sch.day_of_week = v[:day]
+        sch.day_of_week = day_to_int(v[:day])
         sch.start_time = v[:start]
         sch.end_time = v[:end]
         subject.schedules << sch
@@ -43,6 +44,7 @@ class SetupController < ApplicationController
       print(@current_user)
       @current_user.subjects << subject
     end  
+    #@current_user.update_attributes(:phone_no => params[:phone_no])
     
     
     if @current_user.save!
