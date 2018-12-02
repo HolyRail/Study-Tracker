@@ -18,11 +18,11 @@
             %option{:value => "Senior"} Senior
             %option{:value => "Graduate"} Graduate
         .form-group.col-6
-          %label{:for => "phone"} Enter Phone Number 
-          %input#phone.form-control.mdl-textfield__input{:pattern => "^\s*[0-9]{10}$", :type => "text",:name=> "phone_no"}/
+          %label{:for => "phone"} Phone Number 
+          %input#phone.form-control.mdl-textfield__input{:pattern => "^\s*[0-9]{10}$", :type => "text",:name=> "phone_no", :placeholder => "e.g. 0123456789"}
           %span.mdl-textfield__error Input is not a number!
         
-      %h5 Enter Study Plan:
+      %h5 Study Plan:
     
       #subject-list
         #single-subject-0
