@@ -81,14 +81,14 @@ validateEndDate = (endDate, startDate) ->
   
 validateSubjectName = (subject) ->
   if subject == ""
-    errorList.push "Subject field can not be empty"
+    errorList.push "Name of Subject can not be empty"
     #$('#subject').after '<p>Empty, eh? </p>'
     return false
   true  
   
 validateHours = (hours) ->
   if hours == "" || hours <= 0
-    errorList.push "hours field can not be empty"
+    errorList.push "Number of hours can not be empty"
     return false
   true  
 
@@ -109,28 +109,10 @@ totalHoursAllocated = (end, start) ->
   
 validateHoursAllocated = (hours) ->
   if totalHours != parseInt(hours)
-    errorList.push "Total hours are not consistent."
+    errorList.push "Total hours are not equal to hours entered in schedules."
     totalHours = 0
     return false
   totalHours = 0
-<<<<<<< HEAD
-  true
-  
-validateDaysOfWeekOverlap = (schedules) ->
-  j = 0
-  day_of_week_map = {}
-  while j < schedules.length
-    key = schedules[j].day
-    
-    if (key of day_of_week_map)
-      day_of_week_map[key].push(schedules[j].start + " " + schedules[j].end)
-    else
-      day_of_week_map[key] = schedules[j].start + " " + schedules[j].end
-    j++
-  
-  for key of day_of_week_map
-    console.log key, dict[key]
-=======
   true  
 
 
@@ -162,17 +144,14 @@ validateDaysOfWeekOverlap = (schedules) ->
         if valid
           day_of_week_map[key] += ';'+ schedules[j].start + "-" + schedules[j].end
         else
-          errorList.push  "multiple schedules for " + day_of_week_map[key] + " on " + key
+          errorList.push  "Multiple schedules added for " + day_of_week_map[key] + " on " + key
           return false
         i++ 
     else
       # if not in the dictionary, add
       day_of_week_map[key] = schedules[j].start + "-" + schedules[j].end
     
-    j++  
-   
-    console.log(day_of_week_map)  
->>>>>>> c26f89ba3bd1acffa8b23d891a0817f4dbbcbc7c
+    j++
   
 parseAndValidate = ->
   formObj = parseForm()
@@ -262,11 +241,7 @@ validate = (formObj) ->
       return false
   
     schedules = json.subjects[i].schedules
-<<<<<<< HEAD
     validateDaysOfWeekOverlap(schedules)
-=======
-    
->>>>>>> c26f89ba3bd1acffa8b23d891a0817f4dbbcbc7c
     j = 0                                     # to iterate schedules
     diff = 0                                  # will collect total hours
     while j < schedules.length
