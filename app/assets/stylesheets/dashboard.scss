@@ -1,22 +1,3 @@
-// Place all the styles related to the Dashboard controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-/**
-* Copyright 2015 Google Inc. All Rights Reserved.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
 html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
@@ -43,31 +24,41 @@ html, body {
 }
 /* END iOS Safari specific workaround */
 .demo-drawer .mdl-menu .mdl-menu__item {
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .demo-drawer-header {
   box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
   justify-content: flex-end;
   padding: 16px;
   height: 151px;
 }
-.demo-avatar-dropdown {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-}
-
 .demo-navigation {
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 .demo-layout .demo-navigation .mdl-navigation__link {
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
   display: flex !important;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center;
   color: rgba(255, 255, 255, 0.56);
   font-weight: 500;
@@ -85,46 +76,6 @@ html, body {
 .demo-content {
   max-width: 1080px;
 }
-
-.demo-charts {
-  align-items: center;
-}
-.demo-chart:nth-child(1) {
-  color: #ACEC00;
-}
-.demo-chart:nth-child(2) {
-  color: #00BBD6;
-}
-.demo-chart:nth-child(3) {
-  color: #BA65C9;
-}
-.demo-chart:nth-child(4) {
-  color: #EF3C79;
-}
-.demo-graphs {
-  padding: 16px 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-/* TODO: Find a proper solution to have the graphs
-* not float around outside their container in IE10/11.
-* Using a browserhacks.com solution for now.
-*/
-_:-ms-input-placeholder, :root .demo-graphs {
-  min-height: 664px;
-}
-_:-ms-input-placeholder, :root .demo-graph {
-  max-height: 300px;
-}
-/* TODO end */
-.demo-graph:nth-child(1) {
-  color: #00b9d8;
-}
-.demo-graph:nth-child(2) {
-  color: #d9006e;
-}
-
 .demo-cards {
   align-items: flex-start;
   align-content: flex-start;
@@ -142,12 +93,6 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 .demo-cards h3 {
   font-size: 1em;
-}
-.demo-updates .mdl-card__title {
-  min-height: 200px;
-  background-image: url('images/dog.png');
-  background-position: 90% 100%;
-  background-repeat: no-repeat;
 }
 .demo-cards .mdl-card__actions a {
   color: #00BCD4;
@@ -224,49 +169,67 @@ _:-ms-input-placeholder, :root .demo-graph {
   transform: translateY(5.8em);
 }
 
-.card-container {
-  position: relative;
-  width: 100%;
-  height: 380px;
-  perspective: 1000px;
-  .card{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform .5s ease-in-out;
-  }
-}
-
-#right-graph{
+svg[id^=right-graph]{
   float: right;
 }
 
+.card-container {
+  width: 100%;
+  height: 420px;
+  perspective: 1000px;
+  padding-bottom: 10px;
+}
 
 .card {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  .front, .back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    font-family: "Roboto", sans-serif;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-      0 3px 1px -2px rgba(0, 0, 0, 0.2),
-      0 1px 5px 0 rgba(0, 0, 0, 0.12);
-  }
-  .front {
-    background: white;
-    z-index: 2;
-  }
-  .back {
-    background: white;
-    z-index: 3;
-    transform: rotateY(180deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .5s ease-in-out !important;
+  h4 {
+    color: #757575 !important;
   }
 }
+
+.card_face {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.front {
+  background: white;
+}
+
+.back {
+  background: white;
+  transform: rotateY( 180deg );
+}
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.mdl-switch__label{
+   &:before {
+        content: none !important;
+    }
+}
+
+.mdl-switch.mdl-js-switch{
+  width: 200px;
+}
+
+.update-btn-container {
+  justify-content: center;
+}
+
+main.mdl-layout__content {
+    flex: 0 1 auto;
+}
+
+.btn-container{
+  padding-top: 0px;
+}
+

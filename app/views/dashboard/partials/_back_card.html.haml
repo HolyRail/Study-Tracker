@@ -1,0 +1,26 @@
+.cover{:id => 'cover-back'+subject_id}
+    .mdl-grid
+        .mdl-cell.mdl-cell--8-col
+            %h4.mdl-typography--display-1{:id => 'heading-back-'+subject_id}= "Update " + name + " Schedule"
+.mdl-grid
+    .mdl-cell.mdl-cell--9-col
+        %ul.mdl-list{:id => 'list-'+subject_id}
+            -i = 0
+            -schedules.each do |schedule|
+                -i = i+1
+                -schedule_id = subject_id + '-' + i.to_s
+                %li.mdl-list__item{:id => 'list-item-'+ schedule_id}
+                    %span.mdl-list__item-primary-content{:id => 'list-primary-content-'+ schedule_id}
+                        %i.material-icons.mdl-list__item-icon access_time
+                        = schedule["day"] + ", " + schedule["start_time"] + " to " + schedule["end_time"]
+                    %span.mdl-list__item-secondary-action{:id => 'list-secondary-action-'+ schedule_id}
+                        %label.mdl-switch.mdl-js-switch.mdl-js-ripple-effect{:id => 'list-toggle-'+ schedule_id, :for => "switch-" + schedule_id}
+                            %input.mdl-switch__input{:id => 'switch-'+ schedule_id, :type => "checkbox"}
+                            %span.mdl-switch__label{:id => 'switch-label-'+ schedule_id}
+                                %i{:id => 'switch-label-text-'+ schedule_id} Not Completed
+.mdl-grid.btn-container
+    .mdl-cell.mdl-cell--2-col.mdl-cell--8-offset
+        %button.btn-cancel.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored{:id=>"cancel" + subject_id, :type => "button"} Cancel
+    .mdl-cell.mdl-cell--2-col
+        %button.btn-cancel.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored{:id=>"update-flip" + subject_id, :type => "button"} Update
+        
