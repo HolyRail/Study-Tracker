@@ -12,8 +12,10 @@
 .form-group.col-4   
     %label{:for => "starttime"} From
     %span{:style => "color: red"}*
-    %input#starttime{:name => "start_time", :required => "", :type => "time", }/
+    %span{:style => "color: gray"}
+        %font{:size => "1"} (e.g. 01:01:PM)
+    %input#starttime{:name => "start_time", :required => "", :type => "time"}
 .form-group.col-4   
     %label{:for => "endtime"} To
     %span{:style => "color: red"}*
-    %input#endtime{:name => "end_time", :required => "", :type => "time"}/
+    %input#endtime{:name => "end_time", :required => "", :type => "time"}
