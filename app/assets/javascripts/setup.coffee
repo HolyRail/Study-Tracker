@@ -110,7 +110,22 @@ validateHoursAllocated = (hours) ->
     totalHours = 0
     return false
   totalHours = 0
-  true  
+  true
+  
+validateDaysOfWeekOverlap = (schedules) ->
+  j = 0
+  day_of_week_map = {}
+  while j < schedules.length
+    key = schedules[j].day
+    
+    if (key of day_of_week_map)
+      day_of_week_map[key].push(schedules[j].start + " " + schedules[j].end)
+    else
+      day_of_week_map[key] = schedules[j].start + " " + schedules[j].end
+    j++
+  
+  for key of day_of_week_map
+    console.log key, dict[key]
   
 parseAndValidate = ->
   formObj = parseForm()
@@ -179,10 +194,12 @@ validate = (formObj) ->
   json_s = JSON.stringify(formObj)
   json = JSON.parse(json_s)
   i = 0                                       # to iterate subjects
+  error_List = []
   while i < json.subjects.length
 
     subject = json.subjects[i].name
     if(!validateSubjectName(subject))
+      error_List.push("Name of subject ",subject," is invalid")
       return false
     
     hours = json.subjects[i].hours
@@ -198,6 +215,7 @@ validate = (formObj) ->
       return false
   
     schedules = json.subjects[i].schedules
+    validateDaysOfWeekOverlap(schedules)
     j = 0                                     # to iterate schedules
     diff = 0                                  # will collect total hours
     while j < schedules.length

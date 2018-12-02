@@ -22,20 +22,20 @@ class SetupController < ApplicationController
   def create
     subjects = params[:subjects]
     
-    print(subjects)
+    #print(subjects)
     subjects.each do |key,value|
-      print(key,' ')
-      print('VALUE ',value)
       subject = Subject.new
+      #print(key,' ')
+      #print('VALUE ',value)
+      subject = Subjects.new
       subject.name = value[:name] 
       subject.start_date = value[:start_date]
       subject.end_date = value[:end_date]
       schedule_list = value[:schedules]
-
       schedule_list.each do |k,v|
-        print('VALUE sch',v)
         sch = Schedule.new
-        #sch.hours = v[:hours]
+        sch = Schedules.new
+        sch.hours = v[:hours]
         sch.day_of_week = v[:day]
         sch.start_time = v[:start]
         sch.end_time = v[:end]
