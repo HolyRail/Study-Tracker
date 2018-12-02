@@ -4,6 +4,7 @@ class SetupController < ApplicationController
   
   def index
     @current_user ||= User.find_by_id(session[:user_id])
+    @subjects = @current_user.subjects
   end
   
   def day_to_int(day_of_week)
@@ -18,6 +19,19 @@ class SetupController < ApplicationController
     end
     return day
   end  
+  
+  def day_to_string(day_of_week)
+    case day_of_week
+      when 1 then day = "Monday"
+      when 2 then day = "Tuesday"
+      when 3 then day = "Wednesday"
+      when 4 then day = "Thursday"
+      when 5 then day = "Friday"
+      when 6 then day = "Saturday"
+      when 7 then day = "Sunday"
+    end
+    return day
+  end
   
   def create
     subjects = params[:subjects]
