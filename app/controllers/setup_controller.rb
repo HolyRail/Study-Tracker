@@ -25,12 +25,17 @@ class SetupController < ApplicationController
     #print(subjects)
     subjects.each do |key,value|
       subject = Subject.new
+      event = Event.new
       #print(key,' ')
       #print('VALUE ',value)
       subject = Subjects.new
       subject.name = value[:name] 
       subject.start_date = value[:start_date]
       subject.end_date = value[:end_date]
+      
+      event.title = value[:name]
+      event.date_range = value[:start_date] + " " + value[:end_date]
+      
       schedule_list = value[:schedules]
       schedule_list.each do |k,v|
         sch = Schedule.new
@@ -39,9 +44,11 @@ class SetupController < ApplicationController
         sch.day_of_week = v[:day]
         sch.start_time = v[:start]
         sch.end_time = v[:end]
+        event.color = "blue"
         subject.schedules << sch
       end
-      print(@current_user)
+      print(event)
+      event.save
       @current_user.subjects << subject
     end  
     #@current_user.update_attributes(:phone_no => params[:phone_no])
