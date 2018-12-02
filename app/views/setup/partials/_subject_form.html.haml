@@ -1,13 +1,13 @@
 #subjectform
     .form-row
         .form-group.col-6
-            %label{:for => "subject"} Enter Subject Name
+            %label{:for => "subject"} Subject Name
             %span{:style => "color: red"}*
-            %input#subject.form-control.mdl-textfield__input{:type => "text",:name=>"name"}/
+            %input#subject.form-control.mdl-textfield__input{:type => "text",:name=>"name", :placeholder=> "e.g. Math 101, CSCE 606"}/
         .form-group.col-6
-            %label{:for => "hours"} Enter Hours Planned
+            %label{:for => "hours"} Hours Planned
             %span{:style => "color: red"}*
-            %input#hours.form-control.mdl-textfield__input{:type => "number",:name=>"hours"}/
+            %input#hours.form-control.mdl-textfield__input{:type => "number",:name=>"hours", :placeholder=> "study hours planned "}/
     .form-row
         .form-group.col-6
             %label{:for => "startdate"} Enter Start Date
