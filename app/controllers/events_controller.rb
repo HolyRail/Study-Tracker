@@ -5,9 +5,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all # or whatever you query will look like, maybe filter after month
-    respond_to do |format|
-      format.html { render 'index' }
-      format.json { render json: @events }
+    console.log('event')
   end
 
   # GET /events/1

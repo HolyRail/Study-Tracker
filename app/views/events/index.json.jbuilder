@@ -4,5 +4,3 @@ json.array!(@events) do |event|
   json.end event.end_date   
   json.url event_url(event, format: :html) 
 end
-
-json.url event_url(event, format: :html)
