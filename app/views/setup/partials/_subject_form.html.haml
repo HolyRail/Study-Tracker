@@ -25,7 +25,7 @@
             -i = scheduleid
             - subject.schedules.each do |schedule|
                 -i = i + 1
-                .div1.mdl-grid{:id => "#single-schedule-" + i.to_s}
+                .div1.mdl-grid{:id => "single-schedule-" + i.to_s}
                     =render partial: "setup/partials/schedule_form", locals: {schedule: schedule}
         -else
             #single-schedule-1.div1.mdl-grid

@@ -36,7 +36,7 @@
         - else
           - @current_user.subjects.each do |subject|
             -i = i + 1
-            %div{:id => "single-subject-" + subject.name}
+            %div{:id => "single-subject-" + i.to_s}
               -print(subject.name)
               =render partial: "setup/partials/subject_form", locals: {subject: subject, scheduleid: i*subject.schedules.length}
       

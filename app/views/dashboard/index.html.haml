@@ -31,7 +31,7 @@
       - @out_subjects.each do |subject|
         -id = id + 1
         -subject_id = id.to_s
-        .card-container{:id => 'card-container-'+subject_id}
+        .card-container{:id => 'card-container-'+subject_id, :style => "height:"+[(subject["schedules"].length.*125),425].max.to_s+"px"}
           .card{:id => 'card-'+subject_id}
             .card_face.front{:id => 'front-'+subject_id}
               .cover{:id => 'cover-front'+subject_id}

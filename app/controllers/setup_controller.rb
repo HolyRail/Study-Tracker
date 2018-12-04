@@ -33,29 +33,45 @@ class SetupController < ApplicationController
     return day
   end
   
+  def isComplete(sch, subject_name, completed_schedules)
+    completed_schedules.each do |schedule|
+      if schedule["subject_name"]== subject_name and schedule["day_of_week"] == sch.day_of_week and
+        schedule["start_time"] == sch.start_time.strftime("%H:%M:%S") and schedule["end_time"] == sch.end_time.strftime("%H:%M:%S")
+        return true
+      end
+    end
+    return false
+  end
+  
   def create
     subjects = params[:subjects]
-    
-    print(subjects)
+    sql = "select * from schedules where subject_id in (select id from subjects where user_id=" + @current_user.id.to_s + " and completed=true)"
+    completed_schedules = ActiveRecord::Base.connection.execute(sql)
+    completed_schedules = completed_schedules.as_json
+    completed_schedules.each do |schedule|
+      subject_id = schedule["subject_id"]
+      schedule["subject_name"] = Subject.find_by_id(subject_id)["name"]
+    end
+    Schedule.where(subject_id: @current_user.subjects.ids).destroy_all()
+    Subject.where(user_id: @current_user.id).destroy_all()
     subjects.each do |key,value|
-      print(key,' ')
-      print('VALUE ',value)
       subject = Subject.new
       subject.name = value[:name] 
       subject.start_date = value[:start_date]
       subject.end_date = value[:end_date]
       schedule_list = value[:schedules]
-
       schedule_list.each do |k,v|
-        print('VALUE sch',v)
         sch = Schedule.new
-        #sch.hours = v[:hours]
         sch.day_of_week = day_to_int(v[:day])
         sch.start_time = v[:start]
         sch.end_time = v[:end]
+        if isComplete(sch, subject.name, completed_schedules)
+          sch.completed = true
+        else
+          sch.completed = false
+        end
         subject.schedules << sch
       end
-      print(@current_user)
       @current_user.subjects << subject
     end  
     #@current_user.update_attributes(:phone_no => params[:phone_no])

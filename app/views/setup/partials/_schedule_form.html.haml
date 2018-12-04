@@ -18,4 +18,4 @@
 .mdl-cell.mdl-cell--4-col
     %label{:for => "endtime"} To
     %span{:style => "color: red"}*
-    %input#endtime{:name => "end_time", :required => "", :type => "time", :value => if setup_prefill then schedule.start_time.strftime("%H:%M") end}/
+    %input#endtime{:name => "end_time", :required => "", :type => "time", :value => if setup_prefill then schedule.end_time.strftime("%H:%M") end}/
