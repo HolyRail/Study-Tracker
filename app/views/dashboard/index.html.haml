@@ -1,6 +1,8 @@
 = javascript_include_tag params[:controller]
 = stylesheet_link_tag params[:controller]
 %body
+= content_tag :div, id: 'trackers', data: {trackers: @out_subjects} do end
+
 .demo-layout.mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
   %header.demo-header.mdl-layout__header.mdl-color--grey-100.mdl-color-text--grey-600
     .mdl-layout__header-row
@@ -41,25 +43,31 @@
               %svg.donut{:id => 'left-graph-'+subject_id, :height => "50%", :viewbox => "0 0 42 42", :width => "40%"}
                 %circle.donut-hole{:id => 'left-donut-hole-'+subject_id, :cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954"}
                 %circle.donut-ring{:id => 'left-donut-ring-'+subject_id, :cx => "21", :cy => "21", :fill => "#fff", :r => "15.91549430918954", :stroke => "#d2d3d4", "stroke-width" => "3"}
-                %circle.donut-segment{:id => 'left-donut-segment-'+subject_id, :cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954", :stroke => "#ce4b99", "stroke-dasharray" => "50 50", "stroke-dashoffset" => "25", "stroke-width" => "3"}
+                %circle.donut-segment{:id => 'left-donut-segment-'+subject_id, :cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954", :stroke => "#ce4b99", "stroke-dashoffset" => "25", "stroke-width" => "3"}
                 %g.chart-text{:id => 'left-chart-text-'+subject_id}
                   %text.chart-number{:id => 'left-chart-number-'+subject_id, :x => "50%", :y => "50%"}
                   %text.chart-label{:id => 'left-chart-label-'+subject_id, :x => "50%", :y => "50%"}
-                    #{subject['completion_rate']}
                   %text.chart-end{:id => 'left-chart-end-'+subject_id, :x => "50%", :y => "50%"}
-                    Completion-time
+                    Weekly Completion Rate
     
     
-              %svg.donut{:id => 'right-graph-'+subject_id, :height => "50%", :viewbox => "0 0 42 42", :width => "40%"}
-                %circle.donut-hole{:id => 'right-donut-hole-'+subject_id, :cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954"}
-                %circle.donut-ring{:id => 'right-donut-ring-'+subject_id, :cx => "21", :cy => "21", :fill => "#fff", :r => "15.91549430918954", :stroke => "#d2d3d4", "stroke-width" => "3"}
-                %circle.donut-segment{:id => 'right-donut-segment-'+subject_id, :cx => "21", :cy => "21", :fill => "transparent", :r => "15.91549430918954", :stroke => "#ce4b99", "stroke-dasharray" => "60 40", "stroke-dashoffset" => "25", "stroke-width" => "3"}
-                %g.chart-text{:id => 'right-chart-text-'+subject_id}
-                  %text.chart-number{:id => 'right-chart-number-'+subject_id, :x => "50%", :y => "50%"}
-                  %text.chart-label{:id => 'right-chart-label-'+subject_id, :x => "50%", :y => "50%"}
-                    #{subject['completion_rate']}
-                  %text.chart-end{:id => 'right-chart-end-'+subject_id, :x => "50%", :y => "50%"}
-                    Completion-rate
+              .right-list-container{:id => 'right-graph-'+subject_id, :height => "50%"}
+                %section
+                  %h5 Upcoming Schedules
+                  %ul.mdl-list{:id => 'right-list-'+subject_id}
+                  -if subject["upcoming_schedules"].length == 0
+                    %li.mdl-list__item
+                      %i All caught up!
+                  -else
+                    -i = 0
+                    -schedules = subject["upcoming_schedules"]
+                    -schedules.each do |schedule|
+                      -i = i+1
+                      -schedule_id = subject_id + '-' + i.to_s
+                      %li.mdl-list__item{:id => 'list-item-'+ schedule_id}
+                        %span.mdl-list__item-primary-content{:id => 'list-primary-content-'+ schedule_id}
+                          %i.material-icons.mdl-list__item-icon access_time
+                          = schedule["day"] + ", " + schedule["start_time"] + " to " + schedule["end_time"]
               .mdl-grid.update-btn-container
                 .mdl-cell.mdl-cell--4-col
                   %button.btn-update.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-cell--10-col.mdl-button--colored{:id=>"update" + subject_id, :type => "button"} Update

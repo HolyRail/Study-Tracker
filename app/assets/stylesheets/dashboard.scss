@@ -185,7 +185,7 @@ svg[id^=right-graph]{
   position: relative;
   transform-style: preserve-3d;
   transition: transform .5s ease-in-out !important;
-  h4 {
+  h4,h5 {
     color: #757575 !important;
   }
 }
@@ -232,3 +232,8 @@ main.mdl-layout__content {
   padding-top: 0px;
 }
 
+.right-list-container {
+  display: inline-block;
+  float: right;
+  width: 40%;
+}

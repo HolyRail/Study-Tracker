@@ -59,6 +59,7 @@ class SetupController < ApplicationController
       subject.name = value[:name] 
       subject.start_date = value[:start_date]
       subject.end_date = value[:end_date]
+      subject.hours = value[:hours]
       schedule_list = value[:schedules]
       schedule_list.each do |k,v|
         sch = Schedule.new
