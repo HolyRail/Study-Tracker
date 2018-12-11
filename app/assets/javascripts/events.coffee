@@ -4,9 +4,6 @@
 $(document).ready ->
   $('#calendar').fullCalendar 
     events: '/events.json'
- 
- 
-    console.log('Hi')
     
     error: ->
       alert 'error'

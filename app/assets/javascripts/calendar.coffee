@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 eventCalendar = ->
-  $('#calendar').fullCalendar console.log('hello')
+  $('#calendar').fullCalendar {}
 
 clearCalendar = ->
   $('#calendar').fullCalendar 'delete'
