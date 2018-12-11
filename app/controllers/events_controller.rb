@@ -5,7 +5,15 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all # or whatever you query will look like, maybe filter after month
+<<<<<<< HEAD
     print('event')
+=======
+    puts '-------------------$$$$$$$$$$$$$----------------__$$$$$$$$$$$$$event'
+    @events.each do |event|
+      print(event)
+    end  
+
+>>>>>>> 4dfe6025eb7270d5fa138d911674dd26ae2fa1bc
   end
 
   # GET /events/1

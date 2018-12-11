@@ -2,22 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
-  $('#calendar').fullCalendar
-    events: (start, end, timezone, callback) ->
-      $.ajax
-        url: $('#calendar').data('source')
-        dataType: 'json'
-        data:
-          start: start.format('YYYY-MM-DD')
-          end: end.format('YYYY-MM-DD')
-        success: (result) ->
-          events = []
-          result.data.forEach (element) ->
-            events.push
-              title: element.title
-              start: element.start
-            return
-          callback events
+  $('#calendar').fullCalendar 
+    events: '/events.json'
+ 
+ 
     console.log('Hi')
     
     error: ->
