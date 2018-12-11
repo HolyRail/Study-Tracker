@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   post 'setup/create', to: 'setup#create'
+  post 'dashboard/update', to: 'dashboard#update'
 end
