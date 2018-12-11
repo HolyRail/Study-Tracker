@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  resources :events
   get 'setup/index'
   root 'dashboard#index'
-  
+  get 'calendar/index', to: 'calendar#index'
   get 'dashboard/index'
   get '/signin',   to: 'sessions#new'
   post '/signin',   to: 'sessions#create'

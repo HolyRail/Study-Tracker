@@ -252,6 +252,7 @@ $(document).ready ->
    $('.btn-del-subject').on 'click', deletesubject   
  $ ->
    $('.btn-submit').on 'click', parseAndValidate
+
    return
  return
 return
