@@ -175,7 +175,6 @@ svg[id^=right-graph]{
 
 .card-container {
   width: 100%;
-  height: 420px;
   perspective: 1000px;
   padding-bottom: 10px;
 }
@@ -186,7 +185,7 @@ svg[id^=right-graph]{
   position: relative;
   transform-style: preserve-3d;
   transition: transform .5s ease-in-out !important;
-  h4 {
+  h4,h5 {
     color: #757575 !important;
   }
 }
@@ -227,9 +226,15 @@ svg[id^=right-graph]{
 
 main.mdl-layout__content {
     flex: 0 1 auto;
+    min-height: 90%;
 }
 
 .btn-container{
   padding-top: 0px;
 }
 
+.right-list-container {
+  display: inline-block;
+  float: right;
+  width: 40%;
+}

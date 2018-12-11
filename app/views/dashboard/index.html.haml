@@ -1,6 +1,8 @@
 = javascript_include_tag params[:controller]
 = stylesheet_link_tag params[:controller]
 %body
+= content_tag :div, id: 'trackers', data: {trackers: @out_subjects} do end
+
 .demo-layout.mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
   %header.demo-header.mdl-layout__header.mdl-color--grey-100.mdl-color-text--grey-600
     .mdl-layout__header-row
@@ -25,6 +27,7 @@
       %a.mdl-navigation__link{:href => ""}
         %i.mdl-color-text--blue-grey-400.material-icons{:role => "presentation"}> info
         About
+  =render partial: "dashboard/partials/home"
       
       %a.mdl-navigation__link{:href => logout_path}
         %i.mdl-color-text--blue-grey-400.material-icons{:role => "presentation"}> power_settings_new

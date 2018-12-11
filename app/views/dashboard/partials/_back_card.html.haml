@@ -15,12 +15,13 @@
                         = schedule["day"] + ", " + schedule["start_time"] + " to " + schedule["end_time"]
                     %span.mdl-list__item-secondary-action{:id => 'list-secondary-action-'+ schedule_id}
                         %label.mdl-switch.mdl-js-switch.mdl-js-ripple-effect{:id => 'list-toggle-'+ schedule_id, :for => "switch-" + schedule_id}
-                            %input.mdl-switch__input{:id => 'switch-'+ schedule_id, :type => "checkbox"}
+                            %input.mdl-switch__input{:id => 'switch-'+ schedule_id, :type => "checkbox", :checked => schedule["completed"] == true}
                             %span.mdl-switch__label{:id => 'switch-label-'+ schedule_id}
-                                %i{:id => 'switch-label-text-'+ schedule_id} Not Completed
+                                - text = if schedule["completed"] == true then "Completed" else "Not Completed" end
+                                %i{:id => 'switch-label-text-'+ schedule_id}= text
 .mdl-grid.btn-container
     .mdl-cell.mdl-cell--2-col.mdl-cell--8-offset
         %button.btn-cancel.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored{:id=>"cancel" + subject_id, :type => "button"} Cancel
     .mdl-cell.mdl-cell--2-col
-        %button.btn-cancel.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored{:id=>"update-flip" + subject_id, :type => "button"} Update
+        %button.btn-cancel.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored{:id=>"do-update" + subject_id, :type => "button"} Update
         

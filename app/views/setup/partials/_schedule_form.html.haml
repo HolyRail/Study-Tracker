@@ -1,19 +1,21 @@
+-setup_prefill = defined?schedule
 .mdl-cell.mdl-cell--4-col
     %label{:for => "day"} Select Day
     /%span{:style => "color: red"}*
     %select#day.select-year.form-control.form-control-lg{:name=> "day_of_week"}
-        %option{:value => "mon"} Monday
-        %option{:value => "tue"} Tuesday
-        %option{:value => "wed"} Wednesday
-        %option{:value => "thu"} Thursday
-        %option{:value => "fri"} Friday
-        %option{:value => "sat"} Saturday
-        %option{:value => "sun"} Sunday
+        %option{:value => "mon", :selected => if setup_prefill then schedule.day_of_week == 1 else false end} Monday
+        %option{:value => "tue", :selected => if setup_prefill then schedule.day_of_week == 2 else false end} Tuesday
+        %option{:value => "wed", :selected => if setup_prefill then schedule.day_of_week == 3 else false end} Wednesday
+        %option{:value => "thu", :selected => if setup_prefill then schedule.day_of_week == 4 else false end} Thursday
+        %option{:value => "fri", :selected => if setup_prefill then schedule.day_of_week == 5 else false end} Friday
+        %option{:value => "sat", :selected => if setup_prefill then schedule.day_of_week == 6 else false end} Saturday
+        %option{:value => "sun", :selected => if setup_prefill then schedule.day_of_week == 7 else false end} Sunday
 .mdl-cell.mdl-cell--4-col 
     %label{:for => "starttime"} From
     %span{:style => "color: red"}*
-    %input#starttime{:name => "start_time", :required => "", :type => "time", }/
+    -if setup_prefill then print schedule.start_time end
+    %input#starttime{:name => "start_time", :required => "", :type => "time", :value => if setup_prefill then schedule.start_time.strftime("%H:%M") end}/
 .mdl-cell.mdl-cell--4-col
     %label{:for => "endtime"} To
     %span{:style => "color: red"}*
-    %input#endtime{:name => "end_time", :required => "", :type => "time"}/
+    %input#endtime{:name => "end_time", :required => "", :type => "time", :value => if setup_prefill then schedule.end_time.strftime("%H:%M") end}/

@@ -158,7 +158,7 @@ parseAndValidate = ->
       data: formObj
       dataType: 'text'
       success: (resultData) ->
-        alert 'Save Complete!'
+        window.location.replace("../dashboard/index");
     return
   else
     error = 0
