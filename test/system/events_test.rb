@@ -14,10 +14,8 @@ class EventsTest < ApplicationSystemTestCase
     visit events_url
     click_on "New Event"
 
-    fill_in "Description", with: @event.description
-    fill_in "End Date", with: @event.end_date
-    fill_in "Start Date", with: @event.start_date
-    fill_in "Title", with: @event.title
+    fill_in "Name", with: @event.name
+    fill_in "Start Time", with: @event.start_time
     click_on "Create Event"
 
     assert_text "Event was successfully created"
@@ -28,10 +26,8 @@ class EventsTest < ApplicationSystemTestCase
     visit events_url
     click_on "Edit", match: :first
 
-    fill_in "Description", with: @event.description
-    fill_in "End Date", with: @event.end_date
-    fill_in "Start Date", with: @event.start_date
-    fill_in "Title", with: @event.title
+    fill_in "Name", with: @event.name
+    fill_in "Start Time", with: @event.start_time
     click_on "Update Event"
 
     assert_text "Event was successfully updated"

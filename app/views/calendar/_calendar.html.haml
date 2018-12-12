@@ -1,0 +1,12 @@
+= javascript_include_tag 'calendar'
+= stylesheet_link_tag params[:controller], 'dashboard'
+%main.mdl-layout__content.mdl-color--grey-100
+    %h5.header= @month_info
+    .mdl-grid.demo-content
+    = month_calendar events: @meetings do |date, meetings1|
+        %div.date-id= date.day
+        - @meetings.each do |meeting|
+            %div.details
+                -if date.strftime('%A') == meeting.start_time.strftime('%A')
+                    = meeting.name
+                    = meeting.start_time.strftime("%I:%M%p") + " to " +  meeting.end_time.strftime("%I:%M%p")

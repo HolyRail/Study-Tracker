@@ -42,16 +42,12 @@
               =render partial: "setup/partials/subject_form", locals: {subject: subject, scheduleid: i*subject.schedules.length}
       
       .mdl-grid.add-subject
-        %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-cell.mdl-cell--10-col.mdl-button--colored{:type => "button"} Add Subject
+        %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-cell.mdl-cell--5-col.mdl-button--colored{:type => "button"} Add Subject
+        %button.btn-del-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-cell.mdl-cell--5-col.mdl-button--colored{:type => "button"} Delete Subject
+        
       // .mdl-grid    
       //   %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.mdl-button--colored{:type => "button"} Add Subject
       //   %button.btn-del-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.offset-2.mdl-button--colored{:type => "button"} Delete Subject
       
       %button#button_submit.btn-submit.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored{:type => "button"}
         %i.material-icons arrow_forward
-      %button#button_logout.btn-logout.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored{:type => "button", :href => "/logout", :method => :get}
-        %i.material-icons power_settings_new
-        //=button_to logout_path
-      //%a.mdl-navigation__link{:href => "/signin"}
-      //%i.mdl-color-text--blue-grey-400.material-icons{:role => "presentation"}> power_settings_new
-      //Logout 

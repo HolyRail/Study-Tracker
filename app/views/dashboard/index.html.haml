@@ -15,10 +15,10 @@
         %span= @current_user.first_name + " " + @current_user.last_name
         .mdl-layout-spacer
     %nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800
-      %a.mdl-navigation__link{:href => ""}
+      %a.mdl-navigation__link{:href => "/dashboard/index"}
         %i.mdl-color-text--blue-grey-400.material-icons{:role => "presentation"}> home
         Home
-      %a.mdl-navigation__link{:href => ""}
+      %a.mdl-navigation__link{:href => "/calendar/index"}
         %i.m-dl-color-text--blue-grey-400.material-icons{:role => "presentation"}> calendar_today
         Calendar
       %a.mdl-navigation__link{:href => "/setup/index"}
@@ -31,4 +31,7 @@
       %a.mdl-navigation__link{:href => logout_path}
         %i.mdl-color-text--blue-grey-400.material-icons{:role => "presentation"}> power_settings_new
         Logout  
-  =render partial: "dashboard/partials/home"
+  -if params[:controller] == 'dashboard'
+    =render partial: "dashboard/partials/home"
+  -if params[:controller] == 'calendar'
+    =render partial: "calendar/calendar"
