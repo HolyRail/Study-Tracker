@@ -30,11 +30,10 @@ copysubject = ->
   return
   
 deletesubject = ->
-  $div_current = this.closest('div[id^="single-subject"]')
-  parent_header = $div_current.id
-  console.log(parent_header)
-  $div = $("#" + parent_header)
-  $div.remove()
+  div_current = $('div[id^="single-subject"]:last')
+  parent_header = div_current.prop("id")
+  if parseInt(parent_header.match(/\d+/g), 10) > 1
+    div_current.remove()
   return
   
 
