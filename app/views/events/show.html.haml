@@ -1,17 +1,11 @@
 %p#notice= notice
 
 %p
-  %b Title:
-  = @event.title
+  %b Name:
+  = @event.name
 %p
-  %b Description:
-  = @event.description
-%p
-  %b Start date:
-  = @event.start_date
-%p
-  %b End date:
-  = @event.end_date
+  %b Start time:
+  = @event.start_time
 
 = link_to 'Edit', edit_event_path(@event)
 \|
