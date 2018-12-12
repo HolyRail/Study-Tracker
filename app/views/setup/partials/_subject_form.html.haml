@@ -17,12 +17,7 @@
         .mdl-cell.mdl-cell--6-col
             %label{:for => "enddate"} Enter End Date
             %span{:style => "color: red"}*
-<<<<<<< HEAD
             %input#enddate{:type => "date", :required => "",:name=>"end_date", :value => if setup_prefill then subject.end_date end}/
-=======
-            %input#enddate{:type => "date", :required => "",:name=>"end_date"}/
-            
->>>>>>> 90cf85e508d65e0164fcbd4efec86e4206494a2f
     .schedule-list.add
         #single-schedule-0.div1.mdl-grid
             =render "setup/partials/schedule_form"
