@@ -260,11 +260,8 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
-<<<<<<< HEAD
   faker
-=======
   fullcalendar-rails
->>>>>>> 0567ccb092a981cdde73206b9075963487cb1ca5
   haml
   haml-rails
   jbuilder (~> 2.5)
@@ -289,4 +286,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.16.6
+   1.17.1

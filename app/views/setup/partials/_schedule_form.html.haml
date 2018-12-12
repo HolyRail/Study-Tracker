@@ -13,19 +13,9 @@
 .mdl-cell.mdl-cell--4-col 
     %label{:for => "starttime"} From
     %span{:style => "color: red"}*
-<<<<<<< HEAD
-    %span{:style => "color: gray"}
-        %font{:size => "1"} (e.g. 01:01:PM)
-    %input#starttime{:name => "start_time", :required => "", :type => "time"}
-.form-group.col-4   
-    %label{:for => "endtime"} To
-    %span{:style => "color: red"}*
-    %input#endtime{:name => "end_time", :required => "", :type => "time"}
-=======
     -if setup_prefill then print schedule.start_time end
     %input#starttime{:name => "start_time", :required => "", :type => "time", :value => if setup_prefill then schedule.start_time.strftime("%H:%M") end}/
 .mdl-cell.mdl-cell--4-col
     %label{:for => "endtime"} To
     %span{:style => "color: red"}*
     %input#endtime{:name => "end_time", :required => "", :type => "time", :value => if setup_prefill then schedule.end_time.strftime("%H:%M") end}/
->>>>>>> 0567ccb092a981cdde73206b9075963487cb1ca5

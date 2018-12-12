@@ -218,6 +218,7 @@ parseAndValidate = ->
 feature = 1
 validate = (formObj) ->
   json_s = JSON.stringify(formObj)
+  print(formObj)
   json = JSON.parse(json_s)
   i = 0                                       # to iterate subjects
   error_List = []

@@ -56,6 +56,7 @@ class SetupController < ApplicationController
     Subject.where(user_id: @current_user.id).destroy_all()
     subjects.each do |key,value|
       subject = Subject.new
+      event = Event.new
       #print(key,' ')
       #print('VALUE ',value)
       subject = Subjects.new
