@@ -1,6 +1,65 @@
-.login-container.mdl-grid
-  .btn.white.darken-4.col-xs-6.s10.m4.login-button
-    %a.login-link{:href => "/auth/google_oauth2", :style => "text-transform:none"}
-      .left
-        %img{:alt => "Google \"G\" Logo", :src => "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png", :width => "30px"}/
-      Login with Google
+%link{:href => "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css", :rel => "stylesheet"}/
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"}
+%link{:href => "https://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}/
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"}
+= javascript_include_tag params[:controller]
+= stylesheet_link_tag params[:controller]
+
+-#  This file is app/views/movies/index.html.haml
+%header
+    %nav.row 
+        %div.nav-wrapper.black
+            .col.s3.left-align
+                -#%a.brand-logo.brand-logo-icon{:href => "schedules_path"} 
+                -#%img{:alt => "Logo", :src => "https://campozark.com/sites/default/files/styles/mosaic_constrained/public/tamu.png?itok=z3Qu9nQg", :width => "75px", :height => "60px"}/ 
+                %img{:alt => "Logo", :src => "images/ASC logo_horizontal_maroon_RGB copy.png", :width => "250px", :height => "60px"}/ 
+                -#%a.brand-logo{:href => "#"} Logo
+                -#%a.sidenav-trigger{:href => "#", :data-target => "mobile-nav"}
+            .col.s5.center-align 
+                %span.brand-logo StudyTracker
+            .col.s4.right-align    
+                %ul#centered.right.hide-on-med-and-down
+                    // %li
+                    //     %a{:href => "#"} Sass
+                    // %li
+                    //     %a{:href => "#"} Components
+                    %li
+                        %a{:href => "https://successcenter.tamu.edu/"} About Us
+
+
+// %ul#slide-out.sidenav
+//     // %li
+//     //     %a{:href => "#"} Sass
+//     // %li
+//     //     %a{:href => "#"} Components
+//     %li
+//         %a{:href => "https://successcenter.tamu.edu/"} About Us
+//     %a.sidenav-trigger{"data-target" => "slide-out", :href => "#"}
+//         %i.material-icons menu        
+
+%main.gray.lighten-4
+    // .login-container.mdl-grid
+    //     .btn#main_id.white.darken-4.col.s10.m4.l6.login-button.center
+    //         %a.login-link{:href => "/auth/google_oauth2", :style => "text-transform:none"}
+    //             %img{:alt => "Google \"G\" Logo", :src => "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png", :width => "30px"}/
+    //             Login with Google
+    .login-container.mdl-grid
+        .btn.white.darken-4.col-xs-6.s10.m4.login-button
+            %a.login-link{:href => "/auth/google_oauth2", :style => "text-transform:none"}
+                .left
+                    %img{:alt => "Google \"G\" Logo", :src => "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png", :width => "30px"}/
+                Login with Google
+
+
+
+%footer.page-footer#site-footer
+    %div.container
+        %p.center
+            %img{:src => "images/find your success_main_RGB copy.png", :width => "200", :height => "70"}
+            
+        %p.center    
+            %span
+                Academic Success Center
+
+
+// <a title="By Texas A&amp;M University [Public domain], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Texas_A%26M_University_logo.svg"><img width="128" alt="Texas A&amp;M University logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Texas_A%26M_University_logo.svg/128px-Texas_A%26M_University_logo.svg.png"></a>

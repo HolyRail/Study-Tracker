@@ -1,5 +1,8 @@
+= javascript_include_tag params[:controller]
+= stylesheet_link_tag params[:controller]
 %header.mdl-layout__header
   %h4.setup-header Create Account
+ 
 .container
   %ul#error
   %form{:action => setup_create_path, :method => :post, :novalidate => "", :id => 'setup_form'}
@@ -7,8 +10,8 @@
       %h5.username
         Name:
         %span=  @current_user.first_name + " " + @current_user.last_name
-      .form-row
-        .form-group.col-6
+      .mdl-grid
+        .mdl-cell.mdl-cell--6-col
           %label{:for => "year"} Select Year of Study
           %span{:style => "color: red"}*
           %select#year.select-year.form-control.form-control-lg{:name => "year"}
@@ -27,12 +30,28 @@
       #subject-list
         #single-subject-0
           =render "setup/partials/subject_form"
-        #single-subject-1
-          =render "setup/partials/subject_form", id: "first_subject"
+        -i = 0
+        - if @current_user.subjects.length == 0
+          #single-subject-1
+            =render "setup/partials/subject_form", id: "first_subject"
+        - else
+          - @current_user.subjects.each do |subject|
+            -i = i + 1
+            %div{:id => "single-subject-" + i.to_s}
+              -print(subject.name)
+              =render partial: "setup/partials/subject_form", locals: {subject: subject, scheduleid: i*subject.schedules.length}
       
-      .form-row.add-subject
-        %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-10.mdl-button--colored{:type => "button"} Add Subject
-      
+      .mdl-grid.add-subject
+        %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-cell.mdl-cell--10-col.mdl-button--colored{:type => "button"} Add Subject
+      // .mdl-grid    
+      //   %button.btn-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.mdl-button--colored{:type => "button"} Add Subject
+      //   %button.btn-del-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.offset-2.mdl-button--colored{:type => "button"} Delete Subject
       
       %button#button_submit.btn-submit.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored{:type => "button"}
         %i.material-icons arrow_forward
+      %button#button_logout.btn-logout.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored{:type => "button", :href => "/logout", :method => :get}
+        %i.material-icons power_settings_new
+        //=button_to logout_path
+      //%a.mdl-navigation__link{:href => "/signin"}
+      //%i.mdl-color-text--blue-grey-400.material-icons{:role => "presentation"}> power_settings_new
+      //Logout 

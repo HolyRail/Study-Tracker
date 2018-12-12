@@ -201,7 +201,7 @@ parseAndValidate = ->
       data: formObj
       dataType: 'text'
       success: (resultData) ->
-        alert 'Save Complete!'
+        window.location.replace("../dashboard/index");
     return
   else
     error = 0
@@ -302,6 +302,7 @@ $(document).ready ->
    $('.btn-del-subject').on 'click', deletesubject   
  $ ->
    $('.btn-submit').on 'click', parseAndValidate
+
    return
  return
 return

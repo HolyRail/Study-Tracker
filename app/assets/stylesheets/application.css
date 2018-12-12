@@ -10,7 +10,21 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *= require fullcalendar
- *= require daterangepicker
+
  *= require_tree .
  *= require_self
  */
+#centered{
+    padding: 20px 0px;
+}
+
+#site-footer {
+
+background: #F37B7C;
+height: auto;
+}
+
+.nav-wrapper{
+    
+    width: 100%;
+}

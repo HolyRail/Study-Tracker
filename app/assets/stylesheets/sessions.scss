@@ -10,3 +10,21 @@
 .login-link{
     font-size:20px;
 }
+
+body {
+    display: flex;
+    min-height: 100h;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+      
+  @media only screen and (max-width: 992px) {
+      nav .brand-logo-icon {
+    display : none !important;
+  }
+  }
+
+

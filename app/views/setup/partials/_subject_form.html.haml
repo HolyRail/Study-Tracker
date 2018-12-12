@@ -1,3 +1,4 @@
+-setup_prefill = defined?subject
 #subjectform
     .form-row
         .form-group.col-6
@@ -12,18 +13,25 @@
         .form-group.col-6
             %label{:for => "startdate"} Enter Start Date
             %span{:style => "color: red"}*
-            %input#startdate{:type => "date", :required => "",:name=>"start_date"}/
-        .form-group.col-6
+            %input#startdate{:type => "date", :required => "",:name=>"start_date", :value => if setup_prefill then subject.start_date end}/
+        .mdl-cell.mdl-cell--6-col
             %label{:for => "enddate"} Enter End Date
             %span{:style => "color: red"}*
-            %input#enddate{:type => "date", :required => "",:name=>"end_date"}/
+            %input#enddate{:type => "date", :required => "",:name=>"end_date", :value => if setup_prefill then subject.end_date end}/
     .schedule-list.add
-        #single-schedule-0.div1.form-row
+        #single-schedule-0.div1.mdl-grid
             =render "setup/partials/schedule_form"
-        #single-schedule-1.div1.form-row
-            =render "setup/partials/schedule_form"
-    .form-row    
-        %button.btn-delete.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.mdl-button--colored{:type => "button"} Delete Schedule
-        %button.btn-copy.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.offset-2.mdl-button--colored{:type => "button"} Add Schedule
-    .form-row.del-subject 
-        %button.btn-del-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.offset-2.mdl-button--colored{:type => "button"} Delete Subject
+        -if setup_prefill
+            -i = scheduleid
+            - subject.schedules.each do |schedule|
+                -i = i + 1
+                .div1.mdl-grid{:id => "single-schedule-" + i.to_s}
+                    =render partial: "setup/partials/schedule_form", locals: {schedule: schedule}
+        -else
+            #single-schedule-1.div1.mdl-grid
+                =render "setup/partials/schedule_form"
+    .mdl-grid
+        %button.btn-delete.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-cell.mdl-cell--5-col.mdl-button--colored{:type => "button"} Delete Schedule
+        %button.btn-copy.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-cell.mdl-cell--5-col.mdl-cell--2-offset.mdl-button--colored{:type => "button"} Add Schedule
+        .form-row.del-subject 
+            %button.btn-del-subject.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.col-5.offset-2.mdl-button--colored{:type => "button"} Delete Subject

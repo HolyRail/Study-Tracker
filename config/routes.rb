@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :events
   get 'setup/index'
   root 'dashboard#index'
-  get '/calendar', to: 'visitors#index'
+  get 'calendar/index', to: 'calendar#index'
   get 'dashboard/index'
   get '/signin',   to: 'sessions#new'
   post '/signin',   to: 'sessions#create'
@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   post 'setup/create', to: 'setup#create'
+  post 'dashboard/update', to: 'dashboard#update'
 end

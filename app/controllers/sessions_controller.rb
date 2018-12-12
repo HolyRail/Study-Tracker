@@ -5,9 +5,11 @@ class SessionsController < ApplicationController
   def create
   	@user = User.find_or_create_from_auth_hash(request.env["omniauth.auth"])
   	session[:user_id] = @user.id
-  	
-  	#Add logic to redirect to setup if initial login and dashboard otherwise
-  	redirect_to setup_index_path
+    if (@user.subjects.length > 0)
+      redirect_to root_path
+    else
+  	  redirect_to setup_index_path
+  	end
   end
 
   def destroy
